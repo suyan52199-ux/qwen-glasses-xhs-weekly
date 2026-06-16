@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>千问AI眼镜 · 小红书决策合集 · 周累计驾驶舱</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:#0a0e27;color:#e8eef7}
+body{display:flex;flex-direction:column}
+.topbar{flex:0 0 auto;background:rgba(10,14,39,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.08);padding:12px 22px;z-index:9999}
+.bar-inner{max-width:1600px;margin:0 auto;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.brand{font-size:1em;font-weight:800;background:linear-gradient(135deg,#5BC0EB 0%,#FFB800 50%,#FF6B6B 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap}
+.brand .sub{font-size:.75em;font-weight:600;color:#8b9bbd;margin-left:8px;-webkit-text-fill-color:#8b9bbd}
+.controls{display:flex;align-items:center;gap:10px;flex:1;flex-wrap:wrap}
+.label{color:#8b9bbd;font-size:.85em;font-weight:600}
+.week-select{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.15);border-radius:9px;padding:8px 30px 8px 12px;font-size:.9em;font-family:inherit;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%235BC0EB' d='M6 8L0 0h12z'/></svg>");background-repeat:no-repeat;background-position:right 10px center;min-width:230px}
+.week-select:hover{border-color:rgba(91,192,235,.5)}
+.week-select option{background:#0d1430;color:#fff}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;background:linear-gradient(135deg,rgba(91,192,235,.15),rgba(124,58,237,.15));border:1px solid rgba(91,192,235,.3);border-radius:8px;color:#5BC0EB;font-size:.78em;font-weight:600}
+.meta{color:#8b9bbd;font-size:.82em}
+.meta b{color:#FFB800}
+.actions{display:flex;gap:8px;margin-left:auto;align-items:center}
+.btn{padding:7px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);color:#aab8d5;border-radius:8px;cursor:pointer;font-family:inherit;font-size:.82em;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:.2s}
+.btn:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(91,192,235,.4)}
+.btn.primary{background:linear-gradient(135deg,#1A56DB,#7C3AED);color:#fff;border-color:transparent}
+.btn.primary:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(124,58,237,.35)}
+.frame-wrap{flex:1;position:relative;background:#0a0e27}
+.frame{width:100%;height:100%;border:0;background:#0a0e27;display:block}
+.loading{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#5BC0EB;font-size:.95em;display:none;text-align:center}
+.loading.show{display:block}
+.loading .spin{width:32px;height:32px;border:3px solid rgba(91,192,235,.2);border-top-color:#5BC0EB;border-radius:50%;margin:0 auto 10px;animation:rot 1s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.empty-state{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;color:#8b9bbd;max-width:480px;padding:24px;display:none}
+.empty-state.show{display:block}
+.empty-state h2{color:#fff;font-size:1.4em;margin-bottom:12px;background:linear-gradient(135deg,#5BC0EB,#FF6B6B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.empty-state p{line-height:1.7;margin:8px 0}
+.empty-state code{background:rgba(91,192,235,.12);color:#5BC0EB;padding:2px 8px;border-radius:5px;font-family:'SF Mono',Monaco,monospace;font-size:.9em}
+@media (max-width:900px){
+  .bar-inner{gap:10px}
+  .brand .sub,.meta{display:none}
+  .week-select{min-width:170px;font-size:.85em}
+  .btn:not(.primary){display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="bar-inner">
+    <div class="brand">📊 千问AI眼镜 · 小红书决策合集 <span class="sub">/ 周累计驾驶舱</span></div>
+    <div class="controls">
+      <span class="label">📅 数据周期</span>
+      <select id="weekSelect" class="week-select"></select>
+      <span class="badge" id="badge">W1</span>
+      <span class="meta" id="meta"></span>
+    </div>
+    <div class="actions">
+      <a id="raw-link" class="btn" href="" target="_blank" title="查看原始数据">📂 原始数据</a>
+      <a id="open-link" class="btn primary" href="" target="_blank">↗ 全屏打开</a>
+    </div>
+  </div>
+</div>
+
+<div class="frame-wrap">
+  <div class="loading" id="loading"><div class="spin"></div><div>加载本周报告中...</div></div>
+  <div class="empty-state" id="empty">
+    <h2>该周报告尚未生成</h2>
+    <p>当前周次的数据还在等待录入。每周一会基于上周完整数据(蒲公英+星河)生成新一期分析。</p>
+    <p>路径约定：<code>docs/weeks/{周ID}/index.html</code></p>
+  </div>
+  <iframe class="frame" id="frame" title="周报内容"></iframe>
+</div>
+
+<script>
+const WEEKS_URL = 'weeks.json';
+let META = null;
+
+async function load(){
+  try{
+    const r = await fetch(WEEKS_URL, {cache:'no-store'});
+    META = await r.json();
+    renderSelect();
+    const hash = location.hash.slice(1);
+    const initial = (hash && META.weeks.find(w=>w.id===hash))? hash : META.default_week;
+    document.getElementById('weekSelect').value = initial;
+    activate(initial);
+  }catch(e){
+    document.getElementById('empty').classList.add('show');
+    document.getElementById('empty').innerHTML = '<h2>无法加载周次清单</h2><p>请确认 <code>weeks.json</code> 存在且可访问。</p><p style="color:#FF6B6B">错误：' + (e.message||e) + '</p>';
+  }
+}
+
+function renderSelect(){
+  const sel = document.getElementById('weekSelect');
+  // sort weeks DESC by period_start
+  const weeks = [...META.weeks].sort((a,b)=> (b.period_start||'').localeCompare(a.period_start||''));
+  sel.innerHTML = weeks.map(w=>`<option value="${w.id}">${w.label}</option>`).join('');
+  sel.addEventListener('change', e=>activate(e.target.value));
+}
+
+function fmtCount(n){
+  if(n==null) return '-';
+  return n.toLocaleString('zh-CN');
+}
+
+function activate(weekId){
+  const w = META.weeks.find(x=>x.id===weekId);
+  if(!w) return;
+  const frame = document.getElementById('frame');
+  const loading = document.getElementById('loading');
+  const empty = document.getElementById('empty');
+  const meta = document.getElementById('meta');
+  const badge = document.getElementById('badge');
+  const openLink = document.getElementById('open-link');
+  const rawLink = document.getElementById('raw-link');
+
+  badge.textContent = w.id.split('-')[0];
+  const nc = w.notes_count||{};
+  const hm = w.headline_metrics||{};
+  meta.innerHTML = `<b>${fmtCount(nc.total)}</b>篇笔记 · KOC ROI <b>${hm.koc_roi||'-'}×</b> · KOL ROI <b>${hm.kol_roi||'-'}×</b> · S1纵测 <b>${hm.s1_zongce_roi||'-'}×</b>`;
+  openLink.href = w.path;
+  rawLink.href = w.raw_data_dir;
+
+  empty.classList.remove('show');
+  loading.classList.add('show');
+  frame.style.display = 'block';
+  frame.onload = ()=> loading.classList.remove('show');
+  frame.onerror = ()=>{ loading.classList.remove('show'); frame.style.display='none'; empty.classList.add('show'); };
+  frame.src = w.path;
+  history.replaceState(null,'','#'+w.id);
+}
+
+load();
+</script>
+</body>
+</html>

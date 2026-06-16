@@ -1,0 +1,27 @@
+# Build outputs we don't track
+__pycache__/
+*.pyc
+.DS_Store
+*.log
+
+# Local working files at workspace ROOT only (not under docs/)
+/outputs/
+/*.xlsx
+/*.pptx
+/*.docx
+/all_notes.csv
+/*_data.json
+/title_analysis.json
+/titles_fetched.json
+/urls_to_fetch.json
+/image_extraction_test.json
+/chart_data.json
+/merged_data.pkl
+/report_template.html
+/report_v2.html
+/build_*.py
+/gen_*.py
+
+# Auth artefacts
+.env
+*.token

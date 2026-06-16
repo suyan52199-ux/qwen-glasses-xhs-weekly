@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "title": "千问AI眼镜 · 小红书决策分析合集",
+  "subtitle": "周累计数据驾驶舱",
+  "default_week": "W1-2026-05-13_to_06-13",
+  "weeks": [
+    {
+      "id": "W1-2026-05-13_to_06-13",
+      "label": "W1 · 2026.05.13 - 06.13",
+      "period_start": "2026-05-13",
+      "period_end": "2026-06-13",
+      "channel": "小红书",
+      "products": ["千问AI眼镜S1", "千问AI眼镜G1"],
+      "scope": "蒲公英平台 + 星河平台同项目对齐",
+      "notes_count": {"total": 632, "kol": 34, "koc": 598, "s1_dedicated": 236, "g1_dedicated": 398},
+      "headline_metrics": {
+        "koc_roi": 8.18,
+        "kol_roi": 2.75,
+        "s1_zongce_roi": 114.62,
+        "g1_hengce_roi": 10.11,
+        "s1_hengce_roi": 9.80
+      },
+      "path": "weeks/W1-2026-05-13_to_06-13/index.html",
+      "raw_data_dir": "weeks/W1-2026-05-13_to_06-13/raw_data/",
+      "created_at": "2026-06-16",
+      "tabs": [
+        {"id": "s1g1",   "label": "千问S1-G1笔记效率细分",         "icon": "🔬"},
+        {"id": "promo",  "label": "618促单数据分析",              "icon": "🎉"},
+        {"id": "brief",  "label": "S1纵测KOC复刻Brief",            "icon": "📝"},
+        {"id": "g1tpl",  "label": "G1纵测5套对决模板",             "icon": "🎯"},
+        {"id": "hengce", "label": "S1横测 vs S1纵测对比",          "icon": "📊"},
+        {"id": "funnel", "label": "决策漏斗ROI单页",                "icon": "🚀"}
+      ]
+    }
+  ]
+}

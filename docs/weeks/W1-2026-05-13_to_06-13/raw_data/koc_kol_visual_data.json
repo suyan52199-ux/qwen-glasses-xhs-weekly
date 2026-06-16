@@ -1,0 +1,439 @@
+{
+  "directions": [
+    "G1横测",
+    "G1选购攻略",
+    "S1横测",
+    "S1热点520",
+    "S1热点618",
+    "S1热点场景对比",
+    "S1热点明星",
+    "S1热点读书日",
+    "S1纵测",
+    "实测选购攻略"
+  ],
+  "roles": [
+    "KOC",
+    "KOL"
+  ],
+  "heatmap_roi": [
+    [
+      0,
+      0,
+      10.11,
+      238
+    ],
+    [
+      1,
+      0,
+      2.72,
+      33
+    ],
+    [
+      0,
+      1,
+      1.02,
+      126
+    ],
+    [
+      0,
+      2,
+      9.8,
+      103
+    ],
+    [
+      0,
+      3,
+      1.51,
+      10
+    ],
+    [
+      0,
+      4,
+      1.67,
+      20
+    ],
+    [
+      0,
+      5,
+      0.53,
+      30
+    ],
+    [
+      0,
+      6,
+      0.0,
+      39
+    ],
+    [
+      0,
+      7,
+      11.31,
+      28
+    ],
+    [
+      0,
+      8,
+      114.62,
+      6
+    ],
+    [
+      1,
+      9,
+      4.78,
+      1
+    ]
+  ],
+  "heatmap_gmv": [
+    [
+      0,
+      0,
+      6290.0,
+      238
+    ],
+    [
+      1,
+      0,
+      17325.0,
+      33
+    ],
+    [
+      0,
+      1,
+      414.0,
+      126
+    ],
+    [
+      0,
+      2,
+      6216.0,
+      103
+    ],
+    [
+      0,
+      3,
+      1968.0,
+      10
+    ],
+    [
+      0,
+      4,
+      767.0,
+      20
+    ],
+    [
+      0,
+      5,
+      531.0,
+      30
+    ],
+    [
+      0,
+      6,
+      0.0,
+      39
+    ],
+    [
+      0,
+      7,
+      24168.0,
+      28
+    ],
+    [
+      0,
+      8,
+      108328.0,
+      6
+    ],
+    [
+      1,
+      9,
+      11647.0,
+      1
+    ]
+  ],
+  "sankey_nodes": [
+    {
+      "name": "KOC"
+    },
+    {
+      "name": "S1产品"
+    },
+    {
+      "name": "G1产品"
+    },
+    {
+      "name": "KOL"
+    },
+    {
+      "name": "S1横测"
+    },
+    {
+      "name": "S1热点明星"
+    },
+    {
+      "name": "S1热点场景对比"
+    },
+    {
+      "name": "S1热点读书日"
+    },
+    {
+      "name": "S1热点618"
+    },
+    {
+      "name": "G1横测"
+    },
+    {
+      "name": "G1选购攻略"
+    },
+    {
+      "name": "实测选购攻略"
+    },
+    {
+      "name": "高ROI(≥10x)"
+    },
+    {
+      "name": "中ROI(3-10x)"
+    },
+    {
+      "name": "低ROI(<3x)"
+    },
+    {
+      "name": "无转化"
+    }
+  ],
+  "sankey_links": [
+    {
+      "source": "KOC",
+      "target": "S1产品",
+      "value": 236
+    },
+    {
+      "source": "KOC",
+      "target": "G1产品",
+      "value": 364
+    },
+    {
+      "source": "KOL",
+      "target": "G1产品",
+      "value": 34
+    },
+    {
+      "source": "S1产品",
+      "target": "S1横测",
+      "value": 103
+    },
+    {
+      "source": "S1产品",
+      "target": "S1热点明星",
+      "value": 39
+    },
+    {
+      "source": "S1产品",
+      "target": "S1热点场景对比",
+      "value": 30
+    },
+    {
+      "source": "S1产品",
+      "target": "S1热点读书日",
+      "value": 28
+    },
+    {
+      "source": "S1产品",
+      "target": "S1热点618",
+      "value": 20
+    },
+    {
+      "source": "G1产品",
+      "target": "G1横测",
+      "value": 271
+    },
+    {
+      "source": "G1产品",
+      "target": "G1选购攻略",
+      "value": 126
+    },
+    {
+      "source": "G1产品",
+      "target": "实测选购攻略",
+      "value": 1
+    },
+    {
+      "source": "S1横测",
+      "target": "高ROI(≥10x)",
+      "value": 16
+    },
+    {
+      "source": "S1横测",
+      "target": "中ROI(3-10x)",
+      "value": 5
+    },
+    {
+      "source": "S1横测",
+      "target": "低ROI(<3x)",
+      "value": 1
+    },
+    {
+      "source": "S1横测",
+      "target": "无转化",
+      "value": 81
+    },
+    {
+      "source": "S1热点明星",
+      "target": "低ROI(<3x)",
+      "value": 6
+    },
+    {
+      "source": "S1热点明星",
+      "target": "无转化",
+      "value": 33
+    },
+    {
+      "source": "S1热点读书日",
+      "target": "高ROI(≥10x)",
+      "value": 6
+    },
+    {
+      "source": "S1热点读书日",
+      "target": "中ROI(3-10x)",
+      "value": 3
+    },
+    {
+      "source": "S1热点读书日",
+      "target": "低ROI(<3x)",
+      "value": 4
+    },
+    {
+      "source": "S1热点读书日",
+      "target": "无转化",
+      "value": 15
+    },
+    {
+      "source": "S1热点618",
+      "target": "高ROI(≥10x)",
+      "value": 2
+    },
+    {
+      "source": "S1热点618",
+      "target": "无转化",
+      "value": 18
+    },
+    {
+      "source": "S1热点场景对比",
+      "target": "低ROI(<3x)",
+      "value": 3
+    },
+    {
+      "source": "S1热点场景对比",
+      "target": "无转化",
+      "value": 27
+    },
+    {
+      "source": "G1横测",
+      "target": "高ROI(≥10x)",
+      "value": 36
+    },
+    {
+      "source": "G1横测",
+      "target": "中ROI(3-10x)",
+      "value": 30
+    },
+    {
+      "source": "G1横测",
+      "target": "低ROI(<3x)",
+      "value": 25
+    },
+    {
+      "source": "G1横测",
+      "target": "无转化",
+      "value": 180
+    },
+    {
+      "source": "实测选购攻略",
+      "target": "中ROI(3-10x)",
+      "value": 1
+    },
+    {
+      "source": "G1选购攻略",
+      "target": "高ROI(≥10x)",
+      "value": 6
+    },
+    {
+      "source": "G1选购攻略",
+      "target": "中ROI(3-10x)",
+      "value": 4
+    },
+    {
+      "source": "G1选购攻略",
+      "target": "低ROI(<3x)",
+      "value": 2
+    },
+    {
+      "source": "G1选购攻略",
+      "target": "无转化",
+      "value": 114
+    }
+  ],
+  "kk_summary": {
+    "koc_overall": {
+      "count": 600,
+      "total_cost": 436057.056,
+      "total_gmv": 3567122.6795066716,
+      "roi": 8.18,
+      "avg_gmv": 5945.0,
+      "avg_interact": 54.0,
+      "avg_store": 161.9,
+      "avg_search": 39.3,
+      "avg_cost": 727.0,
+      "with_gmv_pct": 22.2
+    },
+    "kol_overall": {
+      "count": 34,
+      "total_cost": 212453.165,
+      "total_gmv": 583363.7,
+      "roi": 2.75,
+      "avg_gmv": 17158.0,
+      "avg_interact": 769.0,
+      "avg_store": 375.6,
+      "avg_search": 96.6,
+      "avg_cost": 6249.0,
+      "with_gmv_pct": 76.5
+    },
+    "koc_s1": {
+      "count": 236,
+      "total_cost": 236665.327,
+      "total_gmv": 2017883.729506672,
+      "roi": 8.53,
+      "avg_gmv": 8550.0,
+      "avg_interact": 84.0,
+      "avg_store": 259.7,
+      "avg_search": 57.8,
+      "avg_cost": 1003.0,
+      "with_gmv_pct": 23.3
+    },
+    "koc_g1": {
+      "count": 364,
+      "total_cost": 199391.729,
+      "total_gmv": 1549238.9500000002,
+      "roi": 7.77,
+      "avg_gmv": 4256.0,
+      "avg_interact": 34.0,
+      "avg_store": 98.6,
+      "avg_search": 27.4,
+      "avg_cost": 548.0,
+      "with_gmv_pct": 21.4
+    },
+    "kol_s1": null,
+    "kol_g1": {
+      "count": 34,
+      "total_cost": 212453.165,
+      "total_gmv": 583363.7,
+      "roi": 2.75,
+      "avg_gmv": 17158.0,
+      "avg_interact": 769.0,
+      "avg_store": 375.6,
+      "avg_search": 96.6,
+      "avg_cost": 6249.0,
+      "with_gmv_pct": 76.5
+    }
+  }
+}
