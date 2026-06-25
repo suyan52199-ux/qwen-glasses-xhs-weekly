@@ -6,30 +6,68 @@
   "weeks": [
     {
       "id": "W1-2026-05-13_to_06-13",
-      "label": "W1 · 2026.05.13 - 06.13",
+      "label": "W1 · 2026.04 - 06.22",
       "period_start": "2026-05-13",
-      "period_end": "2026-06-13",
+      "period_end": "2026-06-22",
       "channel": "小红书",
-      "products": ["千问AI眼镜S1", "千问AI眼镜G1"],
-      "scope": "蒲公英平台 + 星河平台同项目对齐",
-      "notes_count": {"total": 632, "kol": 34, "koc": 598, "s1_dedicated": 236, "g1_dedicated": 398},
+      "products": [
+        "千问AI眼镜S1",
+        "千问AI眼镜G1"
+      ],
+      "scope": "蒲公英+星河(原始) + 如涵618促销 + 金咖聚光+星河",
+      "notes_count": {
+        "total": 786,
+        "kol": 34,
+        "koc": 752,
+        "s1_dedicated": 307,
+        "g1_dedicated": 373,
+        "suppliers": {
+          "original": 634,
+          "ruhan": 80,
+          "jinka": 72
+        }
+      },
       "headline_metrics": {
-        "koc_roi": 8.18,
-        "kol_roi": 2.75,
-        "s1_zongce_roi": 114.62,
-        "g1_hengce_roi": 10.11,
-        "s1_hengce_roi": 9.80
+        "koc_roi": 8.6,
+        "kol_roi": 3.98,
+        "s1_zongce_roi": 112.86,
+        "g1_hengce_roi": 12.07,
+        "s1_hengce_roi": 16.01
       },
       "path": "weeks/W1-2026-05-13_to_06-13/index.html",
       "raw_data_dir": "weeks/W1-2026-05-13_to_06-13/raw_data/",
       "created_at": "2026-06-16",
       "tabs": [
-        {"id": "s1g1",   "label": "S1·G1 KOC铺量效率",            "icon": "🔬"},
-        {"id": "promo",  "label": "618节点KOC促单",                "icon": "🎉"},
-        {"id": "brief",  "label": "S1高ROI样板复刻Brief",          "icon": "📝"},
-        {"id": "g1tpl",  "label": "G1对决型铺量模板",              "icon": "🎯"},
-        {"id": "hengce", "label": "KOC基本盘 vs 末端样板",         "icon": "📊"},
-        {"id": "funnel", "label": "KOC决策漏斗×ROI",               "icon": "🚀"}
+        {
+          "id": "s1g1",
+          "label": "S1·G1 KOC铺量效率",
+          "icon": "🔬"
+        },
+        {
+          "id": "promo",
+          "label": "618节点KOC促单",
+          "icon": "🎉"
+        },
+        {
+          "id": "brief",
+          "label": "S1高ROI样板复刻Brief",
+          "icon": "📝"
+        },
+        {
+          "id": "g1tpl",
+          "label": "G1对决型铺量模板",
+          "icon": "🎯"
+        },
+        {
+          "id": "hengce",
+          "label": "KOC基本盘 vs 末端样板",
+          "icon": "📊"
+        },
+        {
+          "id": "funnel",
+          "label": "KOC决策漏斗×ROI",
+          "icon": "🚀"
+        }
       ]
     }
   ]

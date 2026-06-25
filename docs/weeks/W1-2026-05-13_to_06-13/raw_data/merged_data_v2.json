@@ -1,0 +1,465 @@
+{
+  "meta": {
+    "title": "KOC铺量内容 - 合并数据底表",
+    "period": "2026-04 至 2026-06-23",
+    "data_sources": [
+      "蒲公英(原始)",
+      "星河(原始)",
+      "如涵(618促销)",
+      "金咖(聚光+星河)"
+    ],
+    "updated_at": "2026-06-25"
+  },
+  "totals": {
+    "koc": {
+      "notes": 752,
+      "spend": 714084,
+      "gmv": 6142373,
+      "roi": 8.6
+    },
+    "kol": {
+      "notes": 34,
+      "spend": 227953,
+      "gmv": 907936,
+      "roi": 3.98
+    },
+    "all": {
+      "notes": 786,
+      "spend": 942037,
+      "gmv": 7050309,
+      "roi": 7.48
+    }
+  },
+  "by_product": {
+    "S1": {
+      "notes": 307,
+      "spend": 417988,
+      "gmv_note": "S1 GMV contains 原始+如涵+金咖S1 portion"
+    },
+    "G1": {
+      "notes": 373,
+      "spend": 281091,
+      "gmv_note": "G1 GMV contains 原始+如涵+金咖G1 portion"
+    }
+  },
+  "suppliers": [
+    {
+      "name": "原始蒲公英(KOC)",
+      "type": "KOC",
+      "notes": 600,
+      "spend": 576584,
+      "gmv": 5537434,
+      "roi": 9.6,
+      "interact": 37764,
+      "store_uv": 141334,
+      "search_uv": 32419,
+      "data_cutoff": "2026-06-22"
+    },
+    {
+      "name": "原始蒲公英(KOL)",
+      "type": "KOL",
+      "notes": 34,
+      "spend": 227953,
+      "gmv": 907936,
+      "roi": 3.98,
+      "interact": 26938,
+      "store_uv": 23371,
+      "search_uv": 5466,
+      "data_cutoff": "2026-06-22"
+    },
+    {
+      "name": "如涵(KOC)",
+      "type": "KOC",
+      "notes": 80,
+      "spend": 107490,
+      "gmv": 285297,
+      "roi": 2.65,
+      "interact": 4564,
+      "store_uv": 3226,
+      "search_uv": 1402,
+      "data_cutoff": "2026-06-22"
+    },
+    {
+      "name": "金咖(KOC)",
+      "type": "KOC",
+      "notes": 72,
+      "spend": 30010,
+      "gmv": 319642,
+      "roi": 10.65,
+      "interact": 0,
+      "store_uv": 9224,
+      "search_uv": 1653,
+      "data_cutoff": "2026-06-23"
+    }
+  ],
+  "directions": [
+    {
+      "product": "G1",
+      "direction": "G1横测",
+      "notes": 238,
+      "spend": 196738,
+      "gmv": 2373684,
+      "roi": 12.07,
+      "interact": 11315,
+      "store_uv": 50139,
+      "search_uv": 13016,
+      "source": "原始蒲公英"
+    },
+    {
+      "product": "S1",
+      "direction": "S1横测",
+      "notes": 103,
+      "spend": 73139,
+      "gmv": 1171237,
+      "roi": 16.01,
+      "interact": 8124,
+      "store_uv": 23420,
+      "search_uv": 5578,
+      "source": "原始蒲公英"
+    },
+    {
+      "product": "S1",
+      "direction": "S1热点读书日",
+      "notes": 28,
+      "spend": 91210,
+      "gmv": 875253,
+      "roi": 9.6,
+      "interact": 8660,
+      "store_uv": 40857,
+      "search_uv": 7543,
+      "source": "原始蒲公英"
+    },
+    {
+      "product": "S1",
+      "direction": "S1纵测",
+      "notes": 6,
+      "spend": 6593,
+      "gmv": 744083,
+      "roi": 112.86,
+      "interact": 396,
+      "store_uv": 7224,
+      "search_uv": 2197,
+      "source": "原始蒲公英"
+    },
+    {
+      "product": "S1+G1",
+      "direction": "金咖-混合",
+      "notes": 72,
+      "spend": 30010,
+      "gmv": 319642,
+      "roi": 10.65,
+      "interact": 0,
+      "store_uv": 9224,
+      "search_uv": 1653,
+      "source": "金咖"
+    },
+    {
+      "product": "S1",
+      "direction": "如涵-S1",
+      "notes": 71,
+      "spend": 92191,
+      "gmv": 258962,
+      "roi": 2.81,
+      "interact": 4150,
+      "store_uv": 2796,
+      "search_uv": 1211,
+      "source": "如涵"
+    },
+    {
+      "product": "G1",
+      "direction": "G1选购攻略",
+      "notes": 126,
+      "spend": 58962,
+      "gmv": 196444,
+      "roi": 3.33,
+      "interact": 2815,
+      "store_uv": 3080,
+      "search_uv": 1129,
+      "source": "原始蒲公英"
+    },
+    {
+      "product": "S1",
+      "direction": "S1热点618",
+      "notes": 20,
+      "spend": 9334,
+      "gmv": 51756,
+      "roi": 5.54,
+      "interact": 1339,
+      "store_uv": 772,
+      "search_uv": 244,
+      "source": "原始蒲公英"
+    },
+    {
+      "product": "S1",
+      "direction": "S1热点520",
+      "notes": 10,
+      "spend": 18720,
+      "gmv": 49242,
+      "roi": 2.63,
+      "interact": 484,
+      "store_uv": 2881,
+      "search_uv": 504,
+      "source": "原始蒲公英"
+    },
+    {
+      "product": "S1",
+      "direction": "S1热点场景对比",
+      "notes": 30,
+      "spend": 42525,
+      "gmv": 40402,
+      "roi": 0.95,
+      "interact": 1609,
+      "store_uv": 6822,
+      "search_uv": 1083,
+      "source": "原始蒲公英"
+    },
+    {
+      "product": "S1",
+      "direction": "S1热点明星",
+      "notes": 39,
+      "spend": 79364,
+      "gmv": 35335,
+      "roi": 0.45,
+      "interact": 3022,
+      "store_uv": 6139,
+      "search_uv": 1125,
+      "source": "原始蒲公英"
+    },
+    {
+      "product": "G1",
+      "direction": "如涵-G1",
+      "notes": 9,
+      "spend": 15299,
+      "gmv": 26335,
+      "roi": 1.72,
+      "interact": 414,
+      "store_uv": 430,
+      "search_uv": 191,
+      "source": "如涵"
+    }
+  ],
+  "top10_roi": [
+    {
+      "nickname": "柚子数码日记",
+      "direction": "S1纵测",
+      "product": "S1",
+      "spend": 1416,
+      "gmv": 333344,
+      "roi": 235.4,
+      "interact": 41,
+      "store_uv": 2679,
+      "url": "https://www.xiaohongshu.com/explore/69fb19870000000035038547?xsec_token=ABJlrrQUX6qmGtJyK44X6HZBS2Vc"
+    },
+    {
+      "nickname": "型型数码版",
+      "direction": "S1纵测",
+      "product": "S1",
+      "spend": 1788,
+      "gmv": 215258,
+      "roi": 120.38,
+      "interact": 118,
+      "store_uv": 2198,
+      "url": "https://www.xiaohongshu.com/explore/69f32b27000000003700f0a0?xsec_token=MBvYl5Qz5UKbAhmOQyJXxoNHfC4o"
+    },
+    {
+      "nickname": "向阳花",
+      "direction": "S1纵测",
+      "product": "S1",
+      "spend": 1095,
+      "gmv": 124623,
+      "roi": 113.77,
+      "interact": 109,
+      "store_uv": 1431,
+      "url": "https://www.xiaohongshu.com/explore/69fd9ad50000000037036a43?app_platform=android&ignoreEngage=true&"
+    },
+    {
+      "nickname": "月光漫过星辰",
+      "direction": "G1选购攻略",
+      "product": "G1",
+      "spend": 280,
+      "gmv": 24090,
+      "roi": 85.88,
+      "interact": 4,
+      "store_uv": 4,
+      "url": "https://www.xiaohongshu.com/explore/6a18fbe5000000003700f674?xsec_token=AB5XzoMS_yB37fIZXzfUodOSyReh"
+    },
+    {
+      "nickname": "数码控不凡",
+      "direction": "S1横测",
+      "product": "S1",
+      "spend": 2440,
+      "gmv": 209508,
+      "roi": 85.88,
+      "interact": 163,
+      "store_uv": 4130,
+      "url": "https://www.xiaohongshu.com/explore/69f3105c0000000035038e94?xsec_token=ABjpeafVmpXl8d0YfIsJJjNHQacr"
+    },
+    {
+      "nickname": "玩数码的安琪",
+      "direction": "S1横测",
+      "product": "S1",
+      "spend": 951,
+      "gmv": 72622,
+      "roi": 76.36,
+      "interact": 33,
+      "store_uv": 1252,
+      "url": "https://www.xiaohongshu.com/explore/69f3108f000000002202bf31?xsec_token=ABjpeafVmpXl8d0YfIsJJjNCTHlu"
+    },
+    {
+      "nickname": "YY的理想家",
+      "direction": "S1纵测",
+      "product": "S1",
+      "spend": 525,
+      "gmv": 39126,
+      "roi": 74.55,
+      "interact": 89,
+      "store_uv": 391,
+      "url": "https://www.xiaohongshu.com/explore/69fdc39b000000001a037423?xsec_token=ABQzxIT15Yre-8jVJ3ZJBNiUXfT4"
+    },
+    {
+      "nickname": "炸毛说数码",
+      "direction": "S1横测",
+      "product": "S1",
+      "spend": 1514,
+      "gmv": 105410,
+      "roi": 69.6,
+      "interact": 18,
+      "store_uv": 1440,
+      "url": "https://www.xiaohongshu.com/explore/69f339c0000000001f0003af?app_platform=ios&app_version=9.19.4&sha"
+    },
+    {
+      "nickname": "数码领地",
+      "direction": "G1横测",
+      "product": "G1",
+      "spend": 8536,
+      "gmv": 576527,
+      "roi": 67.54,
+      "interact": 348,
+      "store_uv": 9579,
+      "url": "https://www.xiaohongshu.com/explore/69e8c50e000000002102fafa?app_platform=ios&app_version=9.26.1&sha"
+    },
+    {
+      "nickname": "Z教授的数码世界🎓",
+      "direction": "S1横测",
+      "product": "S1",
+      "spend": 691,
+      "gmv": 45432,
+      "roi": 65.7,
+      "interact": 27,
+      "store_uv": 957,
+      "url": "https://www.xiaohongshu.com/explore/69f30772000000003601b730?xsec_token=ABjpeafVmpXl8d0YfIsJJjNMFFRv"
+    }
+  ],
+  "top10_gmv": [
+    {
+      "nickname": "数码领地",
+      "direction": "G1横测",
+      "product": "G1",
+      "spend": 8536,
+      "gmv": 576527,
+      "roi": 67.54,
+      "interact": 348,
+      "store_uv": 9579,
+      "url": "https://www.xiaohongshu.com/explore/69e8c50e000000002102fafa?app_platform=ios&app_version=9.26.1&sha"
+    },
+    {
+      "nickname": "雾里看哲",
+      "direction": "S1热点读书日",
+      "product": "S1",
+      "spend": 50511,
+      "gmv": 401642,
+      "roi": 7.95,
+      "interact": 820,
+      "store_uv": 23285,
+      "url": "https://www.xiaohongshu.com/explore/69eb44340000000020007001?app_platform=android&ignoreEngage=true&"
+    },
+    {
+      "nickname": "柚子数码日记",
+      "direction": "S1纵测",
+      "product": "S1",
+      "spend": 1416,
+      "gmv": 333344,
+      "roi": 235.4,
+      "interact": 41,
+      "store_uv": 2679,
+      "url": "https://www.xiaohongshu.com/explore/69fb19870000000035038547?xsec_token=ABJlrrQUX6qmGtJyK44X6HZBS2Vc"
+    },
+    {
+      "nickname": "数码莓莓子🍓",
+      "direction": "S1热点读书日",
+      "product": "S1",
+      "spend": 14417,
+      "gmv": 272068,
+      "roi": 18.87,
+      "interact": 5615,
+      "store_uv": 8847,
+      "url": "https://www.xiaohongshu.com/explore/69f070660000000038037338?xsec_token=MB2bAw9L-qz1GnOgzxH0hZ4BSxkO"
+    },
+    {
+      "nickname": "数里行间",
+      "direction": "G1横测",
+      "product": "G1",
+      "spend": 6351,
+      "gmv": 248561,
+      "roi": 39.14,
+      "interact": 230,
+      "store_uv": 4272,
+      "url": "https://www.xiaohongshu.com/explore/69ff1cf00000000035038de6?xsec_token=MBgNBXWasskAAyglb6mQ2RV1y-J_"
+    },
+    {
+      "nickname": "抬头就看见你",
+      "direction": "G1横测",
+      "product": "G1",
+      "spend": 14297,
+      "gmv": 237589,
+      "roi": 16.62,
+      "interact": 348,
+      "store_uv": 5789,
+      "url": "https://www.xiaohongshu.com/explore/6a0c65a300000000360325b0?xsec_token=ABuhkE3T14ASN8o9_xB3UMr5sc6a"
+    },
+    {
+      "nickname": "型型数码版",
+      "direction": "S1纵测",
+      "product": "S1",
+      "spend": 1788,
+      "gmv": 215258,
+      "roi": 120.38,
+      "interact": 118,
+      "store_uv": 2198,
+      "url": "https://www.xiaohongshu.com/explore/69f32b27000000003700f0a0?xsec_token=MBvYl5Qz5UKbAhmOQyJXxoNHfC4o"
+    },
+    {
+      "nickname": "数码控不凡",
+      "direction": "S1横测",
+      "product": "S1",
+      "spend": 2440,
+      "gmv": 209508,
+      "roi": 85.88,
+      "interact": 163,
+      "store_uv": 4130,
+      "url": "https://www.xiaohongshu.com/explore/69f3105c0000000035038e94?xsec_token=ABjpeafVmpXl8d0YfIsJJjNHQacr"
+    },
+    {
+      "nickname": "数码小刘鸭",
+      "direction": "S1横测",
+      "product": "S1",
+      "spend": 9672,
+      "gmv": 203093,
+      "roi": 21.0,
+      "interact": 698,
+      "store_uv": 5032,
+      "url": "https://www.xiaohongshu.com/explore/69f04c02000000003501e8b4?app_platform=ios&app_version=9.28&share"
+    },
+    {
+      "nickname": "智能生活研究所",
+      "direction": "G1横测",
+      "product": "G1",
+      "spend": 5281,
+      "gmv": 192086,
+      "roi": 36.37,
+      "interact": 89,
+      "store_uv": 3822,
+      "url": "https://www.xiaohongshu.com/explore/69e9b060000000002103b2b7?app_platform=ios&app_version=9.26.1&sha"
+    }
+  ]
+}
