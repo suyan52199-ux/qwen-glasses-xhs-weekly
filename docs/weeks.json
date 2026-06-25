@@ -17,22 +17,25 @@
       "scope": "蒲公英+星河(原始) + 如涵618促销 + 金咖聚光+星河",
       "notes_count": {
         "total": 786,
-        "kol": 34,
-        "koc": 752,
-        "s1_dedicated": 307,
-        "g1_dedicated": 373,
-        "suppliers": {
-          "original": 634,
+        "main_pool": {
+          "koc": 600,
+          "kol": 34,
+          "subtotal": 634
+        },
+        "test_pool": {
           "ruhan": 80,
-          "jinka": 72
+          "jinka": 72,
+          "subtotal": 152
         }
       },
       "headline_metrics": {
-        "koc_roi": 8.6,
-        "kol_roi": 3.98,
+        "main_koc_roi": 9.6,
+        "main_kol_roi": 3.98,
+        "test_ruhan_roi": 2.65,
+        "test_jinka_roi": 10.65,
         "s1_zongce_roi": 112.86,
-        "g1_hengce_roi": 12.07,
-        "s1_hengce_roi": 16.01
+        "s1_hengce_roi": 16.01,
+        "g1_hengce_roi": 12.07
       },
       "path": "weeks/W1-2026-05-13_to_06-13/index.html",
       "raw_data_dir": "weeks/W1-2026-05-13_to_06-13/raw_data/",

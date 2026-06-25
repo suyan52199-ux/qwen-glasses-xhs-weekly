@@ -118,7 +118,7 @@ function activate(weekId){
   badge.textContent = w.id.split('-')[0];
   const nc = w.notes_count||{};
   const hm = w.headline_metrics||{};
-  meta.innerHTML = `<b>${fmtCount(nc.total)}</b>篇笔记 · KOC ROI <b>${hm.koc_roi||'-'}×</b> · KOL ROI <b>${hm.kol_roi||'-'}×</b> · S1纵测 <b>${hm.s1_zongce_roi||'-'}×</b>`;
+  meta.innerHTML = `<b>${fmtCount(nc.total)}</b>篇 · 主力<b>${nc.main_pool?nc.main_pool.subtotal:'-'}</b>篇 ROI <b>${hm.main_koc_roi||'-'}×</b> · 测试<b>${nc.test_pool?nc.test_pool.subtotal:'-'}</b>篇(如涵${hm.test_ruhan_roi||'-'}×/金咖${hm.test_jinka_roi||'-'}×)`;
   openLink.href = w.path;
   rawLink.href = w.raw_data_dir;
 
