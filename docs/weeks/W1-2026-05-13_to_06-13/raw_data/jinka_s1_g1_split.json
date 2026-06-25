@@ -1,0 +1,36 @@
+{
+  "total": {
+    "notes": 72,
+    "budget": 50000,
+    "gmv": 319642.24,
+    "roi": 6.3928448,
+    "cengjiao_uv": 110.0
+  },
+  "S1": {
+    "notes": 36,
+    "budget": 16371,
+    "gmv": 116599,
+    "roi": 7.12,
+    "interact": 1726,
+    "search_store_uv": 1938,
+    "chengjiao_uv": 58.0,
+    "gmv_per_note": 3239,
+    "cost_per_note": 455
+  },
+  "G1": {
+    "notes": 36,
+    "budget": 33629,
+    "gmv": 203043,
+    "roi": 6.04,
+    "interact": 1918,
+    "search_store_uv": 1786,
+    "chengjiao_uv": 101.0,
+    "gmv_per_note": 5640,
+    "cost_per_note": 934
+  },
+  "methodology": {
+    "spend_split": "聚光消耗按计划名称S1/G1比例(33%/67%)拆分总预算¥50000",
+    "gmv_split": "星河总GMV¥319,642按蒲公英成交UV比例(36%/64%)拆分",
+    "notes_split": "合作名称 contains S1/G1，36篇 vs 36篇"
+  }
+}
