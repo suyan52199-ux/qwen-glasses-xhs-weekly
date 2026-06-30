@@ -261,8 +261,8 @@ for _, r in full_df.groupby(['role','direction']).agg({'count':'sum','cost':'sum
     heatmap_roi.append([ri, di, roi, int(r['count'])])
     heatmap_gmv.append([ri, di, round(float(r['gmv']), 2), int(r['count'])])
 
-# sankey
-outcome_nodes = ['高ROI(≥10x)', '中ROI(3-10x)', '低ROI(<3x)']
+# sankey: include zero-conversion branch
+outcome_nodes = ['高ROI(≥10x)', '中ROI(3-10x)', '低ROI(<3x)', '零成交']
 sankey_nodes = [{'name':'KOC'},{'name':'KOL'},{'name':'S1'},{'name':'G1'}]
 for d in direction_order:
     sankey_nodes.append({'name':d})
@@ -278,11 +278,16 @@ for (prod, dire), g in full_df.groupby(['product','direction']):
 for dire, g in full_df.groupby('direction'):
     cnt = int(g['count'].sum())
     if cnt == 0: continue
-    roi = safe_div(g['gmv'].sum(), g['cost'].sum())
-    if roi >= 10: out = '高ROI(≥10x)'
-    elif roi >= 3: out = '中ROI(3-10x)'
-    else: out = '低ROI(<3x)'
-    sankey_links.append({'source':dire,'target':out,'value':cnt})
+    zero_cnt = int((g['gmv'] == 0).sum())
+    if zero_cnt:
+        sankey_links.append({'source': dire, 'target': '零成交', 'value': zero_cnt})
+    conv = g[g['gmv'] > 0]
+    if len(conv):
+        roi = safe_div(conv['gmv'].sum(), conv['cost'].sum())
+        if roi >= 10: out = '高ROI(≥10x)'
+        elif roi >= 3: out = '中ROI(3-10x)'
+        else: out = '低ROI(<3x)'
+        sankey_links.append({'source': dire, 'target': out, 'value': int(conv['count'].sum())})
 
 # title_analysis
 titles = []
@@ -687,14 +692,41 @@ for tgt in TARGETS:
         '',
         h, count=1, flags=re.DOTALL)
 
-    # 9) update actype chart data
+    # 9) update actype chart data and redraw as horizontal bar
     actype_chart_data = [
         {'name': s['account_type'], 'roi': s['roi'], 'gmv_per_note': s['gmv_per_note'], 'notes': s['notes']}
         for s in actype_stats
     ]
+    actype_data_json = json.dumps(actype_chart_data, ensure_ascii=False, separators=(',', ':'))
+    new_actype_fn = f'''<script>
+function init_actype_chart(){{
+  var el=document.getElementById('actype-chart');
+  if(!el||el.dataset.inited)return;el.dataset.inited='1';
+  var data={actype_data_json};
+  data.sort(function(a,b){{return a.roi-b.roi;}});
+  var names=data.map(function(d){{return d.name;}});
+  var rois=data.map(function(d){{return +d.roi.toFixed(2);}});
+  var gpns=data.map(function(d){{return +d.gmv_per_note.toFixed(0);}});
+  var notes=data.map(function(d){{return d.notes;}});
+  var chart=echarts.init(el);
+  chart.setOption({{
+    backgroundColor:'transparent',
+    tooltip:{{trigger:'axis',axisPointer:{{type:'shadow'}},formatter:function(p){{var idx=p[0].dataIndex;return '<b>'+names[idx]+'</b><br/>ROI: '+rois[idx]+'×<br/>篇均GMV: ¥'+gpns[idx]+'<br/>篇数: '+notes[idx];}}}},
+    grid:{{left:130,right:70,top:20,bottom:20}},
+    xAxis:{{type:'value',name:'ROI(×)',axisLabel:{{color:'#00C9A7',formatter:'{{value}}×'}},nameTextStyle:{{color:'#00C9A7'}},splitLine:{{lineStyle:{{color:'#243450'}}}}}},
+    yAxis:{{type:'category',data:names,axisLabel:{{color:'#cbd5e0',fontSize:12}}}},
+    series:[{{
+      type:'bar',data:rois,barWidth:16,
+      itemStyle:{{borderRadius:[0,6,6,0],color:function(p){{var v=p.value;return v>=10?'#00C9A7':(v>=3?'#fbbf24':'#f87171');}}}},
+      label:{{show:true,position:'right',color:'#e2e8f0',formatter:'{{c}}×'}}
+    }}]
+  }});
+  window.addEventListener('resize',function(){{chart.resize();}});
+}}
+</script>'''
     h = re.sub(
-        r'(function init_actype_chart\(\)\{[^}]*var data=)\[[^\]]*\];',
-        r'\1' + json.dumps(actype_chart_data, ensure_ascii=False, separators=(',', ':')) + ';',
+        r'<script>\s*function init_actype_chart\(\)\{.*?\}\s*</script>',
+        new_actype_fn,
         h, count=1, flags=re.DOTALL)
 
     # 10) replace panel-mega with visual dashboard
@@ -710,7 +742,7 @@ for tgt in TARGETS:
 
     <div class="mega-kpi-row" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
       <div class="mega-card" style="background:linear-gradient(135deg,#0f1c36,#162544);border:1px solid #1f2f55;border-radius:14px;padding:18px;text-align:center;"><div style="color:#7b8bb2;font-size:12px;margin-bottom:6px;">累计GMV</div><div style="color:#34d399;font-size:30px;font-weight:800;">{fmt_wan(total['total_gmv'])}<span style="font-size:14px;">元</span></div><div style="color:#64749d;font-size:11px;margin-top:4px;">预算 ROI {total['budget_roi']:.2f}×</div></div>
-      <div class="mega-card" style="background:linear-gradient(135deg,#0f1c36,#162544);border:1px solid #1f2f55;border-radius:14px;padding:18px;text-align:center;"><div style="color:#7b8bb2;font-size:12px;margin-bottom:6px;">实际消耗</div><div style="color:#f472b6;font-size:30px;font-weight:800;">{fmt_wan(total['total_cost'])}<span style="font-size:14px;">元</span></div><div style="color:#64749d;font-size:11px;margin-top:4px;">执行率 {safe_div(total['total_cost'], BUDGET)*100:.1f}%</div></div>
+      <div class="mega-card" style="background:linear-gradient(135deg,#0f1c36,#162544);border:1px solid #1f2f55;border-radius:14px;padding:18px;text-align:center;"><div style="color:#7b8bb2;font-size:12px;margin-bottom:6px;">预算使用</div><div style="color:#f472b6;font-size:30px;font-weight:800;">{fmt_wan(BUDGET)}<span style="font-size:14px;">元</span></div><div style="color:#64749d;font-size:11px;margin-top:4px;">执行率 {safe_div(total['total_cost'], BUDGET)*100:.1f}%</div></div>
       <div class="mega-card" style="background:linear-gradient(135deg,#0f1c36,#162544);border:1px solid #1f2f55;border-radius:14px;padding:18px;text-align:center;"><div style="color:#7b8bb2;font-size:12px;margin-bottom:6px;">引流 UV</div><div style="color:#22d3ee;font-size:30px;font-weight:800;">{fmt_num(total['total_store'])}</div><div style="color:#64749d;font-size:11px;margin-top:4px;">搜索 UV {fmt_num(total['total_search'])}</div></div>
       <div class="mega-card" style="background:linear-gradient(135deg,#0f1c36,#162544);border:1px solid #1f2f55;border-radius:14px;padding:18px;text-align:center;"><div style="color:#7b8bb2;font-size:12px;margin-bottom:6px;">总互动</div><div style="color:#fb923c;font-size:30px;font-weight:800;">{fmt_num(total['total_interact'])}</div><div style="color:#64749d;font-size:11px;margin-top:4px;">阅读量 {fmt_num(total['total_reads'])}</div></div>
     </div>
@@ -733,8 +765,9 @@ for tgt in TARGETS:
     </div>
 
     <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:14px;padding:16px;">
-      <div style="color:#e2e8f0;font-size:14px;font-weight:700;margin-bottom:10px;">方向 × 产品线 ROI 热力图</div>
+      <div style="color:#e2e8f0;font-size:14px;font-weight:700;margin-bottom:10px;">方向 × 产品线 ROI 热力图（KOC + KOL 全量）</div>
       <div id="mega-heatmap" style="height:360px;"></div>
+      <div style="color:#64749d;font-size:11px;text-align:right;margin-top:6px;">注：热力图 ROI 按 KOC + KOL 全量 786 篇口径计算</div>
     </div>
 
     <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:14px;padding:16px;">
@@ -757,7 +790,9 @@ for tgt in TARGETS:
         mega_panel,
         h, count=1, flags=re.DOTALL)
 
-    # 11) inject MEGA_DATA + init_mega before INIT
+    # 11) remove old init_mega blocks, then inject new one
+    h = re.sub(r'<script>\nconst MEGA_DATA = \{.*?\};\nfunction init_mega\(\)\{.*?\}\n</script>\n?', '', h, flags=re.DOTALL)
+
     mega_data_json = json.dumps({
         's1': dir_chart_data(s1_dirs),
         'g1': dir_chart_data(g1_dirs),
@@ -771,12 +806,17 @@ for tgt in TARGETS:
 const MEGA_DATA = {mega_data_json};
 function init_mega(){{
   try{{
-    const common = {{backgroundColor:'transparent',tooltip:{{trigger:'axis',axisPointer:{{type:'cross'}}}},legend:{{show:false}},grid:{{left:50,right:40,top:20,bottom:70}},xAxis:{{type:'category',axisLabel:{{color:'#b8c5dc',rotate:30,fontSize:11}},axisLine:{{lineStyle:{{color:'#1e2d5a'}}}}}},yAxis:[{{type:'value',name:'篇数',position:'left',axisLabel:{{color:'#7b8bb2'}},splitLine:{{lineStyle:{{color:'#1e2d5a'}}}},nameTextStyle:{{color:'#7b8bb2'}}}},{{type:'value',name:'ROI(×)',position:'right',axisLabel:{{color:'#fbbf24'}},splitLine:{{show:false}},nameTextStyle:{{color:'#fbbf24'}}}}]}};
     function makeBarLine(id, rows, color){{
       const el = document.getElementById(id); if(!el) return;
       const chart = echarts.init(el);
-      chart.setOption({{...common,
-        xAxis:{{...common.xAxis,data:rows.categories}},
+      chart.setOption({{
+        backgroundColor:'transparent',tooltip:{{trigger:'axis',axisPointer:{{type:'cross'}}}},legend:{{show:false}},
+        grid:{{left:50,right:50,top:20,bottom:70}},
+        xAxis:{{type:'category',data:rows.categories,axisLabel:{{color:'#b8c5dc',rotate:30,fontSize:11}},axisLine:{{lineStyle:{{color:'#1e2d5a'}}}}}},
+        yAxis:[
+          {{type:'value',name:'篇数',position:'left',axisLabel:{{color:'#7b8bb2'}},splitLine:{{lineStyle:{{color:'#1e2d5a'}}}},nameTextStyle:{{color:'#7b8bb2'}}}},
+          {{type:'value',name:'ROI(×)',position:'right',axisLabel:{{color:'#fbbf24'}},splitLine:{{show:false}},nameTextStyle:{{color:'#fbbf24'}}}}
+        ],
         series:[
           {{name:'篇数',type:'bar',data:rows.count,itemStyle:{{color:color,borderRadius:[4,4,0,0]}},barWidth:16}},
           {{name:'ROI',type:'line',yAxisIndex:1,data:rows.roi,smooth:true,lineStyle:{{color:'#fbbf24',width:3}},itemStyle:{{color:'#fbbf24'}},symbol:'circle',symbolSize:6}}
@@ -787,19 +827,19 @@ function init_mega(){{
     makeBarLine('mega-dir-s1', MEGA_DATA.s1, '#38bdf8');
     makeBarLine('mega-dir-g1', MEGA_DATA.g1, '#a78bfa');
 
-    function makeDonut(id, data, colors){{
+    function makeHBar(id, cats, vals, color, unit){{
       const el = document.getElementById(id); if(!el) return;
       const chart = echarts.init(el);
       chart.setOption({{
-        backgroundColor:'transparent',color:colors,
-        tooltip:{{trigger:'item',formatter:'{{b}}: {{c}}篇 ({{d}}%)'}},
-        legend:{{bottom:0,textStyle:{{color:'#94a3b8'}}}},
-        series:[{{type:'pie',radius:['45%','70%'],center:['50%','45%'],avoidLabelOverlap:false,label:{{show:true,color:'#e2e8f0',formatter:'{{b}}\\n{{c}}篇'}},data:data}}]
+        backgroundColor:'transparent',tooltip:{{trigger:'axis',axisPointer:{{type:'shadow'}},formatter:function(p){{return p[0].name+': '+p[0].value+unit;}}}},grid:{{left:70,right:40,top:10,bottom:20}},
+        xAxis:{{type:'value',axisLabel:{{color:'#7b8bb2'}},splitLine:{{lineStyle:{{color:'#1e2d5a'}}}}}},
+        yAxis:{{type:'category',data:cats,axisLabel:{{color:'#b8c5dc',fontSize:12}}}},
+        series:[{{type:'bar',data:vals,itemStyle:{{color:color,borderRadius:[0,4,4,0]}},label:{{show:true,position:'right',color:'#e2e8f0',formatter:'{{c}}'+unit}}}}]
       }});
       window.addEventListener('resize',()=>chart.resize());
     }}
-    makeDonut('mega-role-chart', MEGA_DATA.role_dist, ['#34d399','#fb7185']);
-    makeDonut('mega-product-chart', MEGA_DATA.product_dist, ['#38bdf8','#a78bfa']);
+    makeHBar('mega-role-chart', MEGA_DATA.role_dist.map(d=>d.name).reverse(), MEGA_DATA.role_dist.map(d=>d.value).reverse(), '#34d399', '篇');
+    makeHBar('mega-product-chart', MEGA_DATA.product_dist.map(d=>d.name).reverse(), MEGA_DATA.product_dist.map(d=>d.value).reverse(), '#38bdf8', '篇');
 
     const hmEl = document.getElementById('mega-heatmap');
     if(hmEl){{
@@ -818,14 +858,7 @@ function init_mega(){{
 
     const topEl = document.getElementById('mega-top-dir');
     if(topEl){{
-      const topChart = echarts.init(topEl);
-      topChart.setOption({{
-        backgroundColor:'transparent',tooltip:{{trigger:'axis',axisPointer:{{type:'shadow'}}}},grid:{{left:120,right:40,top:10,bottom:20}},
-        xAxis:{{type:'value',axisLabel:{{color:'#7b8bb2'}},splitLine:{{lineStyle:{{color:'#1e2d5a'}}}}}},
-        yAxis:{{type:'category',data:MEGA_DATA.top_dirs.map(d=>d.方向).reverse(),axisLabel:{{color:'#b8c5dc',fontSize:11}}}},
-        series:[{{type:'bar',data:MEGA_DATA.top_dirs.map(d=>d.ROI).reverse(),itemStyle:{{borderRadius:[0,6,6,0],color:new echarts.graphic.LinearGradient(0,0,1,0,[{{offset:0,color:'#0ea5e9'}},{{offset:1,color:'#f472b6'}}])}},label:{{show:true,position:'right',color:'#fff',formatter:'{{c}}×'}}}}]
-      }});
-      window.addEventListener('resize',()=>topChart.resize());
+      makeHBar('mega-top-dir', MEGA_DATA.top_dirs.map(d=>d.方向).reverse(), MEGA_DATA.top_dirs.map(d=>d.ROI).reverse(), '#f472b6', '×');
     }}
   }}catch(e){{console.error('init mega',e);}}
 }}
