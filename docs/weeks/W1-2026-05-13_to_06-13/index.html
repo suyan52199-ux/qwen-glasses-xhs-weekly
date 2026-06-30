@@ -130,7 +130,143 @@
 .tda-dot-inline { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
 
 
-</style><script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script></head><body><nav class="topnav"><div class="nav-inner"><div class="brand">📊 KOC铺量内容</div><div class="tabs"><button class="tab-btn" data-tab="s1g1"><span class="ic">🔬</span><span class="nm">S1·G1 KOC铺量效率</span></button><button class="tab-btn" data-tab="promo"><span class="ic">🎉</span><span class="nm">金咖618节点KOC促单</span></button><button class="tab-btn" data-tab="brief"><span class="ic">📝</span><span class="nm">S1高ROI样板复刻Brief</span></button><button class="tab-btn" data-tab="g1tpl"><span class="ic">🎯</span><span class="nm">G1对决型铺量模板</span></button><button class="tab-btn" data-tab="hengce"><span class="ic">📊</span><span class="nm">KOC基本盘 vs 末端样板</span></button><button class="tab-btn" data-tab="funnel"><span class="ic">🚀</span><span class="nm">KOC决策漏斗×ROI</span></button><button class="tab-btn" data-tab="ruhan"><span class="ic">📦</span><span class="nm">如涵国补方向</span></button></div></div></nav><main><div class="panel panel-s1g1" id="panel-s1g1" data-panel="s1g1"><header><h1>千问 S1 vs G1 KOC铺量效率分析</h1><p>4-6月 · 主力铺量634篇(KOC 600+KOL 34) + 新内容测试152篇(如涵80+金咖72) · 数据截止6.22</p></header><div class="container"><!-- ═══ NEW: 项目概括 + 目标完成情况 ═══ -->
+
+/* ── mega 786 panel ── */
+.mega-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 18px 0; }
+.mega-card { background: rgba(15,23,42,0.72); border: 1px solid rgba(148,163,184,0.12); border-radius: 12px; padding: 16px; text-align: center; }
+.mega-label { font-size: 12px; color: #94a3b8; margin-bottom: 8px; }
+.mega-value { font-size: 28px; font-weight: 700; line-height: 1.2; }
+.mega-unit { font-size: 13px; color: #94a3b8; margin-left: 4px; font-weight: 500; }
+.mega-table { font-size: 12px; }
+.mega-table th { background: rgba(255,255,255,0.06); color: #94a3b8; }
+.mega-table td { padding: 10px 8px; }
+@media (max-width: 900px) { .mega-metrics { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .mega-metrics { grid-template-columns: 1fr; } }
+</style><script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script></head><body><nav class="topnav"><div class="nav-inner"><div class="brand">📊 KOC铺量内容</div><div class="tabs"><button class="tab-btn" data-tab="mega"><span class="ic">🌍</span><span class="nm">全量786篇</span></button><button class="tab-btn" data-tab="s1g1"><span class="ic">🔬</span><span class="nm">S1·G1 KOC铺量效率</span></button><button class="tab-btn" data-tab="promo"><span class="ic">🎉</span><span class="nm">金咖618节点KOC促单</span></button><button class="tab-btn" data-tab="brief"><span class="ic">📝</span><span class="nm">S1高ROI样板复刻Brief</span></button><button class="tab-btn" data-tab="g1tpl"><span class="ic">🎯</span><span class="nm">G1对决型铺量模板</span></button><button class="tab-btn" data-tab="hengce"><span class="ic">📊</span><span class="nm">KOC基本盘 vs 末端样板</span></button><button class="tab-btn" data-tab="funnel"><span class="ic">🚀</span><span class="nm">KOC决策漏斗×ROI</span></button><button class="tab-btn" data-tab="ruhan"><span class="ic">📦</span><span class="nm">如涵国补方向</span></button></div></div></nav><main><div class="panel panel-mega" id="panel-mega" data-panel="mega">
+<header><h1>全量 786 篇统一视图</h1><p>铺量 634 篇(KOC 600 + KOL 34) + 新内容测试 152 篇(如涵 80 + 金咖 72) · 统一按 KOC/KOL 模板计算 · 数据口径：铺量 6.22 + 如涵 6.29 + 金咖 6.29</p></header>
+<div class="container">
+  <div class="section overview-section">
+    <h2 class="section-title">第一层：核心指标总览</h2>
+    
+<div class="mega-metrics">
+  <div class="mega-card"><div class="mega-label">总笔记数</div><div class="mega-value" style="color:#22d3ee">786<span class="mega-unit">篇</span></div></div>
+  <div class="mega-card"><div class="mega-label">总消耗</div><div class="mega-value" style="color:#f472b6">79.9万<span class="mega-unit">元</span></div></div>
+  <div class="mega-card"><div class="mega-label">总GMV</div><div class="mega-value" style="color:#34d399">479.5万<span class="mega-unit">元</span></div></div>
+  <div class="mega-card"><div class="mega-label">整体ROI</div><div class="mega-value" style="color:#fbbf24">6.00<span class="mega-unit">×</span></div></div>
+  <div class="mega-card"><div class="mega-label">引流UV</div><div class="mega-value" style="color:#60a5fa">123,578<span class="mega-unit"></span></div></div>
+  <div class="mega-card"><div class="mega-label">搜索UV</div><div class="mega-value" style="color:#a78bfa">30,353<span class="mega-unit"></span></div></div>
+  <div class="mega-card"><div class="mega-label">CPE</div><div class="mega-value" style="color:#fb923c">¥12.0<span class="mega-unit"></span></div></div>
+  <div class="mega-card"><div class="mega-label">篇均GMV</div><div class="mega-value" style="color:#e879f9">¥6,100<span class="mega-unit"></span></div></div>
+</div>
+
+  </div>
+  <div class="section">
+    <h2 class="section-title">第二层：KOC vs KOL 身份维度</h2>
+    
+<div class="product-row">
+  <div class="product-card" style="background: linear-gradient(135deg, #0a1f4d 0%, #1a56db22 100%); border: 1px solid #1a56db;">
+    <h3 style="color:#5b9aff">KOC 中腰部铺量 <span class="badge">752篇 · ROI 7.19×</span></h3>
+    <p class="sub">铺量 600 篇 + 如涵 80 篇 + 金咖 72 篇 · 统一按 KOC 模板计算</p>
+    <div class="stats">
+      <div class="stat-item"><div class="v">58.6万</div><div class="l">总消耗</div></div>
+      <div class="stat-item"><div class="v">421.2万</div><div class="l">总GMV</div></div>
+      <div class="stat-item"><div class="v">7.19×</div><div class="l">整体ROI</div></div>
+      <div class="stat-item"><div class="v">110,807</div><div class="l">进店UV</div></div>
+      <div class="stat-item"><div class="v">27,069</div><div class="l">搜索UV</div></div>
+      <div class="stat-item"><div class="v">¥14.5</div><div class="l">CPE</div></div>
+    </div>
+  </div>
+  <div class="product-card" style="background: linear-gradient(135deg, #4d0f1a 0%, #ff6b6b22 100%); border: 1px solid #ff6b6b;">
+    <h3 style="color:#ff8a8a">KOL 头部声量 <span class="badge">34篇 · ROI 2.75×</span></h3>
+    <p class="sub">铺量 34 篇 · 全在 G1 横测 · 单篇成本 ¥6,249</p>
+    <div class="stats">
+      <div class="stat-item"><div class="v">21.2万</div><div class="l">总消耗</div></div>
+      <div class="stat-item"><div class="v">58.3万</div><div class="l">总GMV</div></div>
+      <div class="stat-item"><div class="v">2.75×</div><div class="l">整体ROI</div></div>
+      <div class="stat-item"><div class="v">12,771</div><div class="l">进店UV</div></div>
+      <div class="stat-item"><div class="v">3,284</div><div class="l">搜索UV</div></div>
+      <div class="stat-item"><div class="v">¥8.1</div><div class="l">CPE</div></div>
+    </div>
+  </div>
+</div>
+
+  </div>
+  <div class="section">
+    <h2 class="section-title">第三层：S1 vs G1 产品维度</h2>
+    
+<div class="product-row">
+  <div class="product-card s1">
+    <h3>千问 S1 <span class="badge">带屏旗舰款 · 343篇</span></h3>
+    <p class="sub">铺量 236 篇 + 如涵 71 篇 + 金咖 36 篇</p>
+    <div class="stats">
+      <div class="stat-item"><div class="v">34.4万</div><div class="l">总消耗</div></div>
+      <div class="stat-item"><div class="v">239.2万</div><div class="l">总GMV</div></div>
+      <div class="stat-item"><div class="v">6.96×</div><div class="l">整体ROI</div></div>
+      <div class="stat-item"><div class="v">¥6,974</div><div class="l">篇均GMV</div></div>
+      <div class="stat-item"><div class="v">67,447</div><div class="l">进店UV</div></div>
+      <div class="stat-item"><div class="v">15,599</div><div class="l">搜索UV</div></div>
+    </div>
+  </div>
+  <div class="product-card g1">
+    <h3>千问 G1 <span class="badge">轻量音频款 · 443篇</span></h3>
+    <p class="sub">铺量 398 篇 + 如涵 9 篇 + 金咖 36 篇</p>
+    <div class="stats">
+      <div class="stat-item"><div class="v">45.5万</div><div class="l">总消耗</div></div>
+      <div class="stat-item"><div class="v">240.3万</div><div class="l">总GMV</div></div>
+      <div class="stat-item"><div class="v">5.28×</div><div class="l">整体ROI</div></div>
+      <div class="stat-item"><div class="v">¥5,424</div><div class="l">篇均GMV</div></div>
+      <div class="stat-item"><div class="v">56,130</div><div class="l">进店UV</div></div>
+      <div class="stat-item"><div class="v">14,753</div><div class="l">搜索UV</div></div>
+    </div>
+  </div>
+</div>
+
+  </div>
+  
+<div class="section">
+  <h2 class="section-title">内容方向效率总表（786 篇统一排序）</h2>
+  <p class="section-sub">按 ROI 降序，涵盖铺量、如涵、金咖全部方向；测试池按 S1/G1 拆分后并入</p>
+  <div class="chart-container" style="overflow-x:auto;">
+    <table class="top-table mega-table">
+      <thead><tr><th>内容方向</th><th>产品</th><th>来源</th><th>篇数</th><th>消耗</th><th>GMV</th><th>ROI</th><th>进店UV</th><th>搜索UV</th><th>互动量</th></tr></thead>
+      <tbody><tr><td>S1纵测</td><td>S1</td><td>铺量</td><td>6</td><td>¥5,671</td><td>¥649,965</td><td style="color:#34d399;font-weight:700">112.86×</td><td>6,549</td><td>2,043</td><td>364</td></tr><tr><td>S1热点读书日</td><td>S1</td><td>铺量</td><td>28</td><td>¥59,815</td><td>¥676,695</td><td style="color:#34d399;font-weight:700">11.31×</td><td>29,524</td><td>5,731</td><td>6,801</td></tr><tr><td>S1横测</td><td>S1</td><td>铺量</td><td>103</td><td>¥65,315</td><td>¥640,267</td><td style="color:#fbbf24;font-weight:700">9.80×</td><td>17,035</td><td>4,079</td><td>7,082</td></tr><tr><td>金咖618促单</td><td>G1</td><td>金咖测试</td><td>36</td><td>¥29,378</td><td>¥235,246</td><td style="color:#fbbf24;font-weight:700">8.01×</td><td>6,896</td><td>1,245</td><td>2,142</td></tr><tr><td>G1横测</td><td>G1</td><td>铺量</td><td>271</td><td>¥358,089</td><td>¥2,068,806</td><td style="color:#fbbf24;font-weight:700">5.78×</td><td>46,843</td><td>12,433</td><td>35,935</td></tr><tr><td>金咖618促单</td><td>S1</td><td>金咖测试</td><td>36</td><td>¥20,622</td><td>¥84,837</td><td style="color:#fbbf24;font-weight:700">4.11×</td><td>2,486</td><td>448</td><td>1,503</td></tr><tr><td>如涵国补方向</td><td>S1</td><td>如涵测试</td><td>71</td><td>¥86,268</td><td>¥289,391</td><td style="color:#fbbf24;font-weight:700">3.35×</td><td>3,675</td><td>1,522</td><td>4,270</td></tr><tr><td>如涵国补方向</td><td>G1</td><td>如涵测试</td><td>9</td><td>¥13,732</td><td>¥34,933</td><td style="color:#f87171;font-weight:700">2.54×</td><td>585</td><td>260</td><td>459</td></tr><tr><td>S1热点618</td><td>S1</td><td>铺量</td><td>20</td><td>¥9,162</td><td>¥15,330</td><td style="color:#f87171;font-weight:700">1.67×</td><td>432</td><td>144</td><td>1,345</td></tr><tr><td>S1热点520</td><td>S1</td><td>铺量</td><td>10</td><td>¥13,013</td><td>¥19,684</td><td style="color:#f87171;font-weight:700">1.51×</td><td>1,246</td><td>289</td><td>440</td></tr><tr><td>选购攻略</td><td>G1</td><td>铺量</td><td>127</td><td>¥53,756</td><td>¥63,797</td><td style="color:#f87171;font-weight:700">1.19×</td><td>1,806</td><td>815</td><td>2,607</td></tr><tr><td>S1热点场景对比</td><td>S1</td><td>铺量</td><td>30</td><td>¥30,068</td><td>¥15,923</td><td style="color:#f87171;font-weight:700">0.53×</td><td>2,947</td><td>593</td><td>1,424</td></tr><tr><td>S1热点明星</td><td>S1</td><td>铺量</td><td>39</td><td>¥53,621</td><td>¥19</td><td style="color:#f87171;font-weight:700">0.00×</td><td>3,553</td><td>750</td><td>2,286</td></tr></tbody>
+    </table>
+  </div>
+</div>
+
+  
+<div class="section">
+  <h2 class="section-title">全量 786 篇 KISS 结论</h2>
+  <div class="kiss-grid">
+    <div class="kiss-card kiss-keep">
+      <div class="kiss-title">KEEP</div>
+      <div class="kiss-v">KOC 仍是效率基本盘，统一口径后 ROI 7.19× 远高于 KOL 2.75×</div>
+      <div class="kiss-v">S1 带屏旗舰全量 ROI 8.29×，显著高于 G1 的 5.71×，高客单价+精准种草模型成立</div>
+      <div class="kiss-v">S1 纵测 / 读书日借势 / G1 横测 三大方向在全量中仍居 TOP</div>
+    </div>
+    <div class="kiss-card kiss-improve">
+      <div class="kiss-title">IMPROVE</div>
+      <div class="kiss-v">测试池（如涵 ROI 3.24×、金咖 6.40×）拉低整体，需优化内容结构与账号选号</div>
+      <div class="kiss-v">KOL 34 篇全部押在 G1 横测，应拓展到 S1 已验证的高 ROI 方向</div>
+      <div class="kiss-v">S1 热点 618/520/明星方向沉淀短，节点内容需提前 2-4 周前置铺设</div>
+    </div>
+    <div class="kiss-card kiss-stop">
+      <div class="kiss-title">STOP</div>
+      <div class="kiss-v">S1 热点明星方向（铺量 39 篇 ROI≈0）继续停投</div>
+      <div class="kiss-v">低转化场景体验/选购攻略类控预算，避免无限量铺量</div>
+    </div>
+    <div class="kiss-card kiss-start">
+      <div class="kiss-title">START</div>
+      <div class="kiss-v">把金咖「用户评论证言」与 G1 横测打法复制到如涵 S1 方向</div>
+      <div class="kiss-v">用测试池（如涵/金咖）做 20% 内容方向实验，验证后导入 80% KOC 铺量</div>
+      <div class="kiss-v">建立「铺量+测试」统一周报口径，每周按 786 篇更新</div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+<div class="panel panel-s1g1" id="panel-s1g1" data-panel="s1g1"><header><h1>千问 S1 vs G1 KOC铺量效率分析</h1><p>4-6月 · 主力铺量634篇(KOC 600+KOL 34) + 新内容测试152篇(如涵80+金咖72) · 数据截止6.22</p></header><div class="container"><!-- ═══ NEW: 项目概括 + 目标完成情况 ═══ -->
 <div class="section overview-section">
   <h2 class="section-title" style="border-left-color:#1A56DB">铺量内容 · 目标完成情况 <span class="ribbon-new">NEW</span></h2>
   <p class="section-sub">两路并行投放 · 总预算 ¥80万 / 总内容 634 条 · 数据截止 6.22</p>
