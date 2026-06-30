@@ -598,9 +598,11 @@ for tgt in TARGETS:
     </div>
   </div>
 </div>
-<div class="chart-row" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:24px 0;">
+<div class="chart-row" style="margin:24px 0;">
   <div class="chart-container"><h3>热力图：方向 × 身份 → ROI</h3><div id="heatmap-roi" class="chart-box" style="height:360px"></div></div>
-  <div class="chart-container"><h3>桑基图：身份 → 产品 → 方向 → 转化结果</h3><div id="sankey-flow" class="chart-box" style="height:360px"></div></div>
+</div>
+<div class="chart-row" style="margin:24px 0;">
+  <div class="chart-container"><h3>桑基图：身份 → 产品 → 方向 → 转化结果</h3><div id="sankey-flow" class="chart-box" style="height:420px"></div></div>
 </div>
 <div class="conclusion-box">
   <h4>KOL vs KOC 核心结论（全量 786）</h4>
