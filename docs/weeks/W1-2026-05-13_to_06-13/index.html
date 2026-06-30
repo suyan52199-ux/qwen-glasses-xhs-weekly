@@ -180,80 +180,52 @@
   .panel-mega .mega-table th, .panel-mega .mega-table td { font-size: 10px; padding: 5px 4px; }
   .panel-mega .product-card .stats { grid-template-columns: repeat(2, 1fr); }
 }
-</style><script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script></head><body><nav class="topnav"><div class="nav-inner"><div class="brand">📊 KOC铺量内容</div><div class="tabs"><button class="tab-btn" data-tab="mega"><span class="ic">🌍</span><span class="nm">全量786篇</span></button><button class="tab-btn" data-tab="s1g1"><span class="ic">🔬</span><span class="nm">S1·G1 KOC铺量效率</span></button><button class="tab-btn" data-tab="brief"><span class="ic">📝</span><span class="nm">S1高ROI样板复刻Brief</span></button><button class="tab-btn" data-tab="g1tpl"><span class="ic">🎯</span><span class="nm">G1对决型铺量模板</span></button><button class="tab-btn" data-tab="hengce"><span class="ic">📊</span><span class="nm">KOC基本盘 vs 末端样板</span></button><button class="tab-btn" data-tab="funnel"><span class="ic">🚀</span><span class="nm">KOC决策漏斗×ROI</span></button></div></div></nav><main><div class="panel panel-mega" id="panel-mega" data-panel="mega">
+</style><script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script></head><body><nav class="topnav"><div class="nav-inner"><div class="brand">📊 KOC铺量内容</div><div class="tabs"><button class="tab-btn" data-tab="mega"><span class="ic">🌍</span><span class="nm">全量786篇</span></button><button class="tab-btn" data-tab="s1g1"><span class="ic">🔬</span><span class="nm">S1·G1 KOC铺量效率</span></button></div></div></nav><main><div class="panel panel-mega" id="panel-mega" data-panel="mega">
 <header><h1>全量 786 篇统一视图</h1><p>总预算 ¥95万 · 786 条内容 · KOL 34 条 · KOC 752 条 · S1 343 条 · G1 443 条</p></header>
-<div class="container">
-  <div class="section overview-section">
-    <h2 class="section-title" style="border-left-color:#fbbf24">全量 786 篇 · 总览</h2>
-    <p class="section-sub">总预算 ¥950,000 · 786 条内容 · 数据截止6.28 · 测试池已并入主池统一口径</p>
-    <div class="mega-metrics">
-      <div class="mega-card"><div class="mega-label">累计GMV</div><div class="mega-value" style="color:#34d399">754.3万<span class="mega-unit">元</span></div></div>
-      <div class="mega-card"><div class="mega-label">预算 ROI</div><div class="mega-value" style="color:#fbbf24">7.94<span class="mega-unit">×</span></div></div>
-      <div class="mega-card"><div class="mega-label">实际消耗</div><div class="mega-value" style="color:#f472b6">96.2万<span class="mega-unit">元</span></div></div>
-      <div class="mega-card"><div class="mega-label">预算执行率</div><div class="mega-value" style="color:#60a5fa">101.3<span class="mega-unit">%</span></div></div>
-      <div class="mega-card"><div class="mega-label">累计引流UV</div><div class="mega-value" style="color:#22d3ee">191,204<span class="mega-unit"></span></div></div>
-      <div class="mega-card"><div class="mega-label">累计搜索UV</div><div class="mega-value" style="color:#a78bfa">45,295<span class="mega-unit"></span></div></div>
-      <div class="mega-card"><div class="mega-label">总互动量</div><div class="mega-value" style="color:#fb923c">73,698<span class="mega-unit"></span></div></div>
-      <div class="mega-card"><div class="mega-label">总阅读量</div><div class="mega-value" style="color:#38bdf8">2,137,436<span class="mega-unit"></span></div></div>
-    </div>
-  </div>
+<div class="container" style="max-width:1280px;margin:0 auto;padding:0 28px;">
+  <div class="mega-dashboard" style="display:grid;gap:22px;padding:24px 0;">
 
-  <div class="section">
-    <h2 class="section-title">身份 × 产品双维效率</h2>
-    <div class="mega-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px;">
-      <div class="mega-card"><div class="mega-label">KOC 整体</div><div class="mega-value" style="color:#34d399">8.98<span class="mega-unit">×</span></div><div class="mega-desc">752篇 · ¥976/篇</div></div>
-      <div class="mega-card"><div class="mega-label">KOL 整体</div><div class="mega-value" style="color:#fb7185">4.18<span class="mega-unit">×</span></div><div class="mega-desc">34篇 · ¥6,704/篇</div></div>
-      <div class="mega-card"><div class="mega-label">S1 产品线</div><div class="mega-value" style="color:#38bdf8">8.22<span class="mega-unit">×</span></div><div class="mega-desc">343篇 · 篇均GMV ¥10,394</div></div>
-      <div class="mega-card"><div class="mega-label">G1 产品线</div><div class="mega-value" style="color:#a78bfa">7.53<span class="mega-unit">×</span></div><div class="mega-desc">443篇 · 篇均GMV ¥8,979</div></div>
+    <div class="mega-kpi-row" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+      <div class="mega-card" style="background:linear-gradient(135deg,#0f1c36,#162544);border:1px solid #1f2f55;border-radius:14px;padding:18px;text-align:center;"><div style="color:#7b8bb2;font-size:12px;margin-bottom:6px;">累计GMV</div><div style="color:#34d399;font-size:30px;font-weight:800;">754.3万<span style="font-size:14px;">元</span></div><div style="color:#64749d;font-size:11px;margin-top:4px;">预算 ROI 7.94×</div></div>
+      <div class="mega-card" style="background:linear-gradient(135deg,#0f1c36,#162544);border:1px solid #1f2f55;border-radius:14px;padding:18px;text-align:center;"><div style="color:#7b8bb2;font-size:12px;margin-bottom:6px;">实际消耗</div><div style="color:#f472b6;font-size:30px;font-weight:800;">96.2万<span style="font-size:14px;">元</span></div><div style="color:#64749d;font-size:11px;margin-top:4px;">执行率 101.3%</div></div>
+      <div class="mega-card" style="background:linear-gradient(135deg,#0f1c36,#162544);border:1px solid #1f2f55;border-radius:14px;padding:18px;text-align:center;"><div style="color:#7b8bb2;font-size:12px;margin-bottom:6px;">引流 UV</div><div style="color:#22d3ee;font-size:30px;font-weight:800;">191,204</div><div style="color:#64749d;font-size:11px;margin-top:4px;">搜索 UV 45,295</div></div>
+      <div class="mega-card" style="background:linear-gradient(135deg,#0f1c36,#162544);border:1px solid #1f2f55;border-radius:14px;padding:18px;text-align:center;"><div style="color:#7b8bb2;font-size:12px;margin-bottom:6px;">总互动</div><div style="color:#fb923c;font-size:30px;font-weight:800;">73,698</div><div style="color:#64749d;font-size:11px;margin-top:4px;">阅读量 2,137,436</div></div>
     </div>
-  </div>
 
-  <div class="section">
-    <h2 class="section-title">内容方向效率总表（按产品线拆分）</h2>
-    <p class="section-sub">柱状图=篇数 · 折线=ROI · 气泡大小=GMV规模</p>
-    <div class="chart-row" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0;">
-      <div class="chart-container"><h3>S1 内容方向 ROI & 篇数</h3><div id="mega-dir-s1" class="chart-box" style="height:380px"></div></div>
-      <div class="chart-container"><h3>G1 内容方向 ROI & 篇数</h3><div id="mega-dir-g1" class="chart-box" style="height:380px"></div></div>
+    <div class="mega-mini-row" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
+      <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:12px;padding:14px;text-align:center;"><div style="color:#34d399;font-size:22px;font-weight:800;">8.98×</div><div style="color:#94a3b8;font-size:12px;">KOC 整体 ROI · 752篇</div></div>
+      <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:12px;padding:14px;text-align:center;"><div style="color:#fb7185;font-size:22px;font-weight:800;">4.18×</div><div style="color:#94a3b8;font-size:12px;">KOL 整体 ROI · 34篇</div></div>
+      <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:12px;padding:14px;text-align:center;"><div style="color:#38bdf8;font-size:22px;font-weight:800;">8.22×</div><div style="color:#94a3b8;font-size:12px;">S1 产品线 · 343篇</div></div>
+      <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:12px;padding:14px;text-align:center;"><div style="color:#a78bfa;font-size:22px;font-weight:800;">7.53×</div><div style="color:#94a3b8;font-size:12px;">G1 产品线 · 443篇</div></div>
     </div>
-    <div class="chart-container"><h3>方向 × 产品线 ROI 热力图</h3><div id="mega-heatmap" class="chart-box" style="height:420px"></div></div>
-    <div class="conclusion-box">
-      <h4>内容方向效率结论（全量 786 篇）</h4>
-      <ul>
-        <li><strong>S1 效率冠军是「纵测」</strong>：6 篇 ROI 144.88×，证明深度对比内容在高客单产品上爆发力最强</li>
-        <li><strong>S1 横测与读书日是可规模化的稳定方向</strong>：139 篇 ROI 13.18×、28 篇 ROI 9.78×，是 S1 铺量基本盘</li>
-        <li><strong>G1 高度依赖横测</strong>：308 篇横测占 G1 总量 70%，ROI 8.25×；选购攻略、国补攻略效率偏低，需优化结构</li>
-        <li><strong>国补/促销类内容并入后拉低均值</strong>：S1国补攻略 71 篇 ROI 3.14×，G1国补攻略 9 篇 ROI 2.28×，建议统一使用「价格钩子+搜索承接」模板</li>
-      </ul>
-    </div>
-  </div>
 
-  <div class="section">
-    <h2 class="section-title">全量 786 篇 KISS 结论</h2>
-    <div class="kiss-grid">
-      <div class="kiss-card kiss-keep">
-        <div class="kiss-title">KEEP</div>
-        <div class="kiss-v">KOC 仍是效率基本盘：统一后 752 篇，实际 ROI 8.98×，远高于 KOL 4.18×</div>
-        <div class="kiss-v">S1 高客单模型成立：343 篇 ROI 8.22×，篇均 GMV ¥10,394</div>
-        <div class="kiss-v">S1纵测、S1读书日借势、G1横测继续规模化复制</div>
-      </div>
-      <div class="kiss-card kiss-improve">
-        <div class="kiss-title">IMPROVE</div>
-        <div class="kiss-v">KOL 34 篇全部压在 G1 横测，应扩展到 S1 纵测/读书日等高 ROI 方向</div>
-        <div class="kiss-v">节点类内容（520/618/场景对比）沉淀周期短，需提前 2-4 周前置铺设</div>
-        <div class="kiss-v">国补/促销类内容统一使用高转化标题公式并强化搜索承接</div>
-      </div>
-      <div class="kiss-card kiss-stop">
-        <div class="kiss-title">STOP</div>
-        <div class="kiss-v">S1 明星热点方向继续停投（本次 ROI 0.45×）</div>
-        <div class="kiss-v">低 ROI 账号类型（时尚颜值/职场财经/文艺学习/家庭亲子）建议停投或改为科技垂类共创</div>
-      </div>
-      <div class="kiss-card kiss-start">
-        <div class="kiss-title">START</div>
-        <div class="kiss-v">把高 ROI 方向（纵测/读书日）从 S1 复制到 G1，摆脱 G1 单一横测依赖</div>
-        <div class="kiss-v">用 20% 预算做新方向小样本测试，验证后导入 80% KOC 铺量</div>
-        <div class="kiss-v">建立「786 篇全量统一周报」口径，每周按预算 95w 更新</div>
-      </div>
+    <div class="mega-chart-row" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+      <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:14px;padding:16px;"><div style="color:#e2e8f0;font-size:14px;font-weight:700;margin-bottom:10px;">身份分布</div><div id="mega-role-chart" style="height:260px;"></div></div>
+      <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:14px;padding:16px;"><div style="color:#e2e8f0;font-size:14px;font-weight:700;margin-bottom:10px;">产品线分布</div><div id="mega-product-chart" style="height:260px;"></div></div>
     </div>
+
+    <div class="mega-chart-row" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+      <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:14px;padding:16px;"><div style="color:#e2e8f0;font-size:14px;font-weight:700;margin-bottom:10px;">S1 方向 ROI & 篇数</div><div id="mega-dir-s1" style="height:340px;"></div></div>
+      <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:14px;padding:16px;"><div style="color:#e2e8f0;font-size:14px;font-weight:700;margin-bottom:10px;">G1 方向 ROI & 篇数</div><div id="mega-dir-g1" style="height:340px;"></div></div>
+    </div>
+
+    <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:14px;padding:16px;">
+      <div style="color:#e2e8f0;font-size:14px;font-weight:700;margin-bottom:10px;">方向 × 产品线 ROI 热力图</div>
+      <div id="mega-heatmap" style="height:360px;"></div>
+    </div>
+
+    <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:14px;padding:16px;">
+      <div style="color:#e2e8f0;font-size:14px;font-weight:700;margin-bottom:10px;">TOP 方向 ROI 排行</div>
+      <div id="mega-top-dir" style="height:320px;"></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
+      <div style="background:#0b1221;border-left:4px solid #34d399;border-radius:10px;padding:14px;"><div style="color:#34d399;font-size:13px;font-weight:700;">KEEP</div><div style="color:#cbd5e1;font-size:12px;margin-top:6px;line-height:1.5;">KOC 基本盘 8.98×；S1 纵测/读书日、G1 横测继续规模化。</div></div>
+      <div style="background:#0b1221;border-left:4px solid #fbbf24;border-radius:10px;padding:14px;"><div style="color:#fbbf24;font-size:13px;font-weight:700;">IMPROVE</div><div style="color:#cbd5e1;font-size:12px;margin-top:6px;line-height:1.5;">KOL 从单一 G1 横测扩展到 S1 高 ROI 方向；节点内容提前 2-4 周铺设。</div></div>
+      <div style="background:#0b1221;border-left:4px solid #f87171;border-radius:10px;padding:14px;"><div style="color:#f87171;font-size:13px;font-weight:700;">STOP</div><div style="color:#cbd5e1;font-size:12px;margin-top:6px;line-height:1.5;">S1 明星热点停投；时尚/职场/文艺/亲子等低 ROI 账号类型停投。</div></div>
+      <div style="background:#0b1221;border-left:4px solid #60a5fa;border-radius:10px;padding:14px;"><div style="color:#60a5fa;font-size:13px;font-weight:700;">START</div><div style="color:#cbd5e1;font-size:12px;margin-top:6px;line-height:1.5;">把纵测/读书日从 S1 复制到 G1；用 20% 预算小样本测试新方向。</div></div>
+    </div>
+
   </div>
 </div>
 </div><div class="panel panel-s1g1" id="panel-s1g1" data-panel="s1g1"><header><h1>千问 S1 vs G1 全量效率分析</h1><p>4-6月 · 全量 786 篇（KOC 752 + KOL 34） · S1 343 篇 · G1 443 篇 · 数据截止6.28</p></header><div class="container"><!-- ═══ 总览：S1 vs G1 ═══ --><div class="section">
@@ -521,6 +493,68 @@ function init_mega(){
         series:[{name:'ROI',type:'heatmap',data:MEGA_DATA.heatmap_data,label:{show:true,formatter:function(p){return p.value[2]+'×';},color:'#fff',fontSize:11},emphasis:{itemStyle:{shadowBlur:10,shadowColor:'rgba(0,0,0,0.5)'}}}]
       });
       window.addEventListener('resize',()=>hm.resize());
+    }
+  }catch(e){console.error('init mega',e);}
+}
+</script><script>
+const MEGA_DATA = {"s1":{"categories":["S1纵测","S1横测","S1热点读书日","S1热点618","S1国补攻略","S1热点520","S1热点场景对比","S1热点明星"],"roi":[144.88,13.18,9.78,6.04,3.14,3.08,0.96,0.45],"gmv":[955210,1238592,892070,56367,289391,57565,40781,35335],"count":[6,139,28,20,71,10,30,39]},"g1":{"categories":["G1横测","G1选购攻略","G1国补攻略"],"roi":[8.25,3.34,2.28],"gmv":[3745966,196727,34933],"count":[308,126,9]},"heatmap_dirs":["S1国补攻略","S1横测","S1热点520","S1热点618","S1热点场景对比","S1热点明星","S1热点读书日","S1纵测","G1国补攻略","G1横测","G1选购攻略"],"heatmap_data":[[1,8,2.28,9],[1,9,8.25,308],[1,10,3.34,126],[0,0,3.14,71],[0,1,13.18,139],[0,2,3.08,10],[0,3,6.04,20],[0,4,0.96,30],[0,5,0.45,39],[0,6,9.78,28],[0,7,144.88,6]],"role_dist":[{"name":"KOC","value":752},{"name":"KOL","value":34}],"product_dist":[{"name":"S1","value":343},{"name":"G1","value":443}],"top_dirs":[{"方向":"S1纵测","ROI":144.88,"篇数":6,"GMV":955210},{"方向":"S1横测","ROI":13.18,"篇数":139,"GMV":1238592},{"方向":"S1热点读书日","ROI":9.78,"篇数":28,"GMV":892070},{"方向":"G1横测","ROI":8.25,"篇数":308,"GMV":3745966},{"方向":"S1热点618","ROI":6.04,"篇数":20,"GMV":56367},{"方向":"G1选购攻略","ROI":3.34,"篇数":126,"GMV":196727},{"方向":"S1国补攻略","ROI":3.14,"篇数":71,"GMV":289391},{"方向":"S1热点520","ROI":3.08,"篇数":10,"GMV":57565}]};
+function init_mega(){
+  try{
+    const common = {backgroundColor:'transparent',tooltip:{trigger:'axis',axisPointer:{type:'cross'}},legend:{show:false},grid:{left:50,right:40,top:20,bottom:70},xAxis:{type:'category',axisLabel:{color:'#b8c5dc',rotate:30,fontSize:11},axisLine:{lineStyle:{color:'#1e2d5a'}}},yAxis:[{type:'value',name:'篇数',position:'left',axisLabel:{color:'#7b8bb2'},splitLine:{lineStyle:{color:'#1e2d5a'}},nameTextStyle:{color:'#7b8bb2'}},{type:'value',name:'ROI(×)',position:'right',axisLabel:{color:'#fbbf24'},splitLine:{show:false},nameTextStyle:{color:'#fbbf24'}}]};
+    function makeBarLine(id, rows, color){
+      const el = document.getElementById(id); if(!el) return;
+      const chart = echarts.init(el);
+      chart.setOption({...common,
+        xAxis:{...common.xAxis,data:rows.categories},
+        series:[
+          {name:'篇数',type:'bar',data:rows.count,itemStyle:{color:color,borderRadius:[4,4,0,0]},barWidth:16},
+          {name:'ROI',type:'line',yAxisIndex:1,data:rows.roi,smooth:true,lineStyle:{color:'#fbbf24',width:3},itemStyle:{color:'#fbbf24'},symbol:'circle',symbolSize:6}
+        ]
+      });
+      window.addEventListener('resize',()=>chart.resize());
+    }
+    makeBarLine('mega-dir-s1', MEGA_DATA.s1, '#38bdf8');
+    makeBarLine('mega-dir-g1', MEGA_DATA.g1, '#a78bfa');
+
+    function makeDonut(id, data, colors){
+      const el = document.getElementById(id); if(!el) return;
+      const chart = echarts.init(el);
+      chart.setOption({
+        backgroundColor:'transparent',color:colors,
+        tooltip:{trigger:'item',formatter:'{b}: {c}篇 ({d}%)'},
+        legend:{bottom:0,textStyle:{color:'#94a3b8'}},
+        series:[{type:'pie',radius:['45%','70%'],center:['50%','45%'],avoidLabelOverlap:false,label:{show:true,color:'#e2e8f0',formatter:'{b}\n{c}篇'},data:data}]
+      });
+      window.addEventListener('resize',()=>chart.resize());
+    }
+    makeDonut('mega-role-chart', MEGA_DATA.role_dist, ['#34d399','#fb7185']);
+    makeDonut('mega-product-chart', MEGA_DATA.product_dist, ['#38bdf8','#a78bfa']);
+
+    const hmEl = document.getElementById('mega-heatmap');
+    if(hmEl){
+      const hm = echarts.init(hmEl);
+      hm.setOption({
+        backgroundColor:'transparent',
+        tooltip:{position:'top',formatter:function(p){return p.name+'<br/>ROI: '+p.value[2]+'×<br/>篇数: '+p.value[3];}},
+        grid:{left:70,right:20,top:10,bottom:100},
+        xAxis:{type:'category',data:MEGA_DATA.heatmap_dirs,splitArea:{show:true},axisLabel:{color:'#b8c5dc',rotate:35,fontSize:10}},
+        yAxis:{type:'category',data:['S1','G1'],splitArea:{show:true},axisLabel:{color:'#b8c5dc',fontSize:13}},
+        visualMap:{min:0,max:15,calculable:true,orient:'horizontal',left:'center',bottom:0,inRange:{color:['#0f172a','#1e3a8a','#0ea5e9','#fbbf24','#f472b6']},textStyle:{color:'#7b8bb2'}},
+        series:[{name:'ROI',type:'heatmap',data:MEGA_DATA.heatmap_data,label:{show:true,formatter:function(p){return p.value[2]+'×';},color:'#fff',fontSize:10},emphasis:{itemStyle:{shadowBlur:10,shadowColor:'rgba(0,0,0,0.5)'}}}]
+      });
+      window.addEventListener('resize',()=>hm.resize());
+    }
+
+    const topEl = document.getElementById('mega-top-dir');
+    if(topEl){
+      const topChart = echarts.init(topEl);
+      topChart.setOption({
+        backgroundColor:'transparent',tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},grid:{left:120,right:40,top:10,bottom:20},
+        xAxis:{type:'value',axisLabel:{color:'#7b8bb2'},splitLine:{lineStyle:{color:'#1e2d5a'}}},
+        yAxis:{type:'category',data:MEGA_DATA.top_dirs.map(d=>d.方向).reverse(),axisLabel:{color:'#b8c5dc',fontSize:11}},
+        series:[{type:'bar',data:MEGA_DATA.top_dirs.map(d=>d.ROI).reverse(),itemStyle:{borderRadius:[0,6,6,0],color:new echarts.graphic.LinearGradient(0,0,1,0,[{offset:0,color:'#0ea5e9'},{offset:1,color:'#f472b6'}])},label:{show:true,position:'right',color:'#fff',formatter:'{c}×'}}]
+      });
+      window.addEventListener('resize',()=>topChart.resize());
     }
   }catch(e){console.error('init mega',e);}
 }
@@ -872,7 +906,7 @@ catBar.setOption({
 window.addEventListener('resize', () => {
  [heatmapChart, sankeyChart, bubbleChart, catBar, titleLiftInteract, titleLiftStore, titleScatter].forEach(c => c.resize());
 });}catch(e){console.error('init promo',e)}}
-const INIT={'mega':typeof init_mega==='function'?init_mega:null,'s1g1':typeof init_s1g1==='function'?init_s1g1:null,'brief':typeof init_brief==='function'?init_brief:null,'g1tpl':typeof init_g1tpl==='function'?init_g1tpl:null,'hengce':typeof init_hengce==='function'?init_hengce:null,'funnel':typeof init_funnel==='function'?init_funnel:null};
+const INIT={'mega':typeof init_mega==='function'?init_mega:null,'s1g1':typeof init_s1g1==='function'?init_s1g1:null};
 
 const TABS=document.querySelectorAll('.tab-btn');
 const PANELS=document.querySelectorAll('.panel');

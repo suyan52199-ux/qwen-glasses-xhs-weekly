@@ -697,82 +697,58 @@ for tgt in TARGETS:
         r'\1' + json.dumps(actype_chart_data, ensure_ascii=False, separators=(',', ':')) + ';',
         h, count=1, flags=re.DOTALL)
 
-    # 10) replace panel-mega with chart-centric view
+    # 10) replace panel-mega with visual dashboard
     g1_overall = overall['g1']
+    role_dist = [{'name': 'KOC', 'value': int(koc_overall['count'])}, {'name': 'KOL', 'value': int(kol_overall['count'])}]
+    product_dist = [{'name': 'S1', 'value': int(s1['count'])}, {'name': 'G1', 'value': int(g1_overall['count'])}]
+    top_dirs = sorted(s1_dirs + g1_dirs, key=lambda x: x['roi'], reverse=True)[:8]
+
     mega_panel = f'''<div class="panel panel-mega" id="panel-mega" data-panel="mega">
 <header><h1>全量 786 篇统一视图</h1><p>总预算 ¥95万 · 786 条内容 · KOL {fmt_num(kol_overall['count'])} 条 · KOC {fmt_num(koc_overall['count'])} 条 · S1 {fmt_num(s1['count'])} 条 · G1 {fmt_num(g1_overall['count'])} 条</p></header>
-<div class="container">
-  <div class="section overview-section">
-    <h2 class="section-title" style="border-left-color:#fbbf24">全量 786 篇 · 总览</h2>
-    <p class="section-sub">总预算 ¥{fmt_num(BUDGET)} · {fmt_num(total['count'])} 条内容 · 数据截止6.28 · 测试池已并入主池统一口径</p>
-    <div class="mega-metrics">
-      <div class="mega-card"><div class="mega-label">累计GMV</div><div class="mega-value" style="color:#34d399">{fmt_wan(total['total_gmv'])}<span class="mega-unit">元</span></div></div>
-      <div class="mega-card"><div class="mega-label">预算 ROI</div><div class="mega-value" style="color:#fbbf24">{total['budget_roi']:.2f}<span class="mega-unit">×</span></div></div>
-      <div class="mega-card"><div class="mega-label">实际消耗</div><div class="mega-value" style="color:#f472b6">{fmt_wan(total['total_cost'])}<span class="mega-unit">元</span></div></div>
-      <div class="mega-card"><div class="mega-label">预算执行率</div><div class="mega-value" style="color:#60a5fa">{safe_div(total['total_cost'], BUDGET)*100:.1f}<span class="mega-unit">%</span></div></div>
-      <div class="mega-card"><div class="mega-label">累计引流UV</div><div class="mega-value" style="color:#22d3ee">{fmt_num(total['total_store'])}<span class="mega-unit"></span></div></div>
-      <div class="mega-card"><div class="mega-label">累计搜索UV</div><div class="mega-value" style="color:#a78bfa">{fmt_num(total['total_search'])}<span class="mega-unit"></span></div></div>
-      <div class="mega-card"><div class="mega-label">总互动量</div><div class="mega-value" style="color:#fb923c">{fmt_num(total['total_interact'])}<span class="mega-unit"></span></div></div>
-      <div class="mega-card"><div class="mega-label">总阅读量</div><div class="mega-value" style="color:#38bdf8">{fmt_num(total['total_reads'])}<span class="mega-unit"></span></div></div>
-    </div>
-  </div>
+<div class="container" style="max-width:1280px;margin:0 auto;padding:0 28px;">
+  <div class="mega-dashboard" style="display:grid;gap:22px;padding:24px 0;">
 
-  <div class="section">
-    <h2 class="section-title">身份 × 产品双维效率</h2>
-    <div class="mega-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px;">
-      <div class="mega-card"><div class="mega-label">KOC 整体</div><div class="mega-value" style="color:#34d399">{koc_overall['roi']:.2f}<span class="mega-unit">×</span></div><div class="mega-desc">{fmt_num(koc_overall['count'])}篇 · ¥{fmt_num(koc_overall['avg_cost'])}/篇</div></div>
-      <div class="mega-card"><div class="mega-label">KOL 整体</div><div class="mega-value" style="color:#fb7185">{kol_overall['roi']:.2f}<span class="mega-unit">×</span></div><div class="mega-desc">{fmt_num(kol_overall['count'])}篇 · ¥{fmt_num(kol_overall['avg_cost'])}/篇</div></div>
-      <div class="mega-card"><div class="mega-label">S1 产品线</div><div class="mega-value" style="color:#38bdf8">{s1['roi']:.2f}<span class="mega-unit">×</span></div><div class="mega-desc">{fmt_num(s1['count'])}篇 · 篇均GMV ¥{fmt_num(s1['avg_gmv'])}</div></div>
-      <div class="mega-card"><div class="mega-label">G1 产品线</div><div class="mega-value" style="color:#a78bfa">{g1_overall['roi']:.2f}<span class="mega-unit">×</span></div><div class="mega-desc">{fmt_num(g1_overall['count'])}篇 · 篇均GMV ¥{fmt_num(g1_overall['avg_gmv'])}</div></div>
+    <div class="mega-kpi-row" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+      <div class="mega-card" style="background:linear-gradient(135deg,#0f1c36,#162544);border:1px solid #1f2f55;border-radius:14px;padding:18px;text-align:center;"><div style="color:#7b8bb2;font-size:12px;margin-bottom:6px;">累计GMV</div><div style="color:#34d399;font-size:30px;font-weight:800;">{fmt_wan(total['total_gmv'])}<span style="font-size:14px;">元</span></div><div style="color:#64749d;font-size:11px;margin-top:4px;">预算 ROI {total['budget_roi']:.2f}×</div></div>
+      <div class="mega-card" style="background:linear-gradient(135deg,#0f1c36,#162544);border:1px solid #1f2f55;border-radius:14px;padding:18px;text-align:center;"><div style="color:#7b8bb2;font-size:12px;margin-bottom:6px;">实际消耗</div><div style="color:#f472b6;font-size:30px;font-weight:800;">{fmt_wan(total['total_cost'])}<span style="font-size:14px;">元</span></div><div style="color:#64749d;font-size:11px;margin-top:4px;">执行率 {safe_div(total['total_cost'], BUDGET)*100:.1f}%</div></div>
+      <div class="mega-card" style="background:linear-gradient(135deg,#0f1c36,#162544);border:1px solid #1f2f55;border-radius:14px;padding:18px;text-align:center;"><div style="color:#7b8bb2;font-size:12px;margin-bottom:6px;">引流 UV</div><div style="color:#22d3ee;font-size:30px;font-weight:800;">{fmt_num(total['total_store'])}</div><div style="color:#64749d;font-size:11px;margin-top:4px;">搜索 UV {fmt_num(total['total_search'])}</div></div>
+      <div class="mega-card" style="background:linear-gradient(135deg,#0f1c36,#162544);border:1px solid #1f2f55;border-radius:14px;padding:18px;text-align:center;"><div style="color:#7b8bb2;font-size:12px;margin-bottom:6px;">总互动</div><div style="color:#fb923c;font-size:30px;font-weight:800;">{fmt_num(total['total_interact'])}</div><div style="color:#64749d;font-size:11px;margin-top:4px;">阅读量 {fmt_num(total['total_reads'])}</div></div>
     </div>
-  </div>
 
-  <div class="section">
-    <h2 class="section-title">内容方向效率总表（按产品线拆分）</h2>
-    <p class="section-sub">柱状图=篇数 · 折线=ROI · 气泡大小=GMV规模</p>
-    <div class="chart-row" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0;">
-      <div class="chart-container"><h3>S1 内容方向 ROI & 篇数</h3><div id="mega-dir-s1" class="chart-box" style="height:380px"></div></div>
-      <div class="chart-container"><h3>G1 内容方向 ROI & 篇数</h3><div id="mega-dir-g1" class="chart-box" style="height:380px"></div></div>
+    <div class="mega-mini-row" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
+      <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:12px;padding:14px;text-align:center;"><div style="color:#34d399;font-size:22px;font-weight:800;">{koc_overall['roi']:.2f}×</div><div style="color:#94a3b8;font-size:12px;">KOC 整体 ROI · {fmt_num(koc_overall['count'])}篇</div></div>
+      <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:12px;padding:14px;text-align:center;"><div style="color:#fb7185;font-size:22px;font-weight:800;">{kol_overall['roi']:.2f}×</div><div style="color:#94a3b8;font-size:12px;">KOL 整体 ROI · {fmt_num(kol_overall['count'])}篇</div></div>
+      <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:12px;padding:14px;text-align:center;"><div style="color:#38bdf8;font-size:22px;font-weight:800;">{s1['roi']:.2f}×</div><div style="color:#94a3b8;font-size:12px;">S1 产品线 · {fmt_num(s1['count'])}篇</div></div>
+      <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:12px;padding:14px;text-align:center;"><div style="color:#a78bfa;font-size:22px;font-weight:800;">{g1_overall['roi']:.2f}×</div><div style="color:#94a3b8;font-size:12px;">G1 产品线 · {fmt_num(g1_overall['count'])}篇</div></div>
     </div>
-    <div class="chart-container"><h3>方向 × 产品线 ROI 热力图</h3><div id="mega-heatmap" class="chart-box" style="height:420px"></div></div>
-    <div class="conclusion-box">
-      <h4>内容方向效率结论（全量 786 篇）</h4>
-      <ul>
-        <li><strong>S1 效率冠军是「纵测」</strong>：6 篇 ROI {s1_dirs[0]['roi']:.2f}×，证明深度对比内容在高客单产品上爆发力最强</li>
-        <li><strong>S1 横测与读书日是可规模化的稳定方向</strong>：{s1_dirs[1]['count']} 篇 ROI {s1_dirs[1]['roi']:.2f}×、{s1_dirs[2]['count']} 篇 ROI {s1_dirs[2]['roi']:.2f}×，是 S1 铺量基本盘</li>
-        <li><strong>G1 高度依赖横测</strong>：{g1_dirs[0]['count']} 篇横测占 G1 总量 {safe_div(g1_dirs[0]['count'], g1_overall['count'])*100:.0f}%，ROI {g1_dirs[0]['roi']:.2f}×；选购攻略、国补攻略效率偏低，需优化结构</li>
-        <li><strong>国补/促销类内容并入后拉低均值</strong>：S1国补攻略 {next((d['count'] for d in s1_dirs if d['内容方向']=='S1国补攻略'),0)} 篇 ROI {next((d['roi'] for d in s1_dirs if d['内容方向']=='S1国补攻略'),0):.2f}×，G1国补攻略 {g1_dirs[2]['count']} 篇 ROI {g1_dirs[2]['roi']:.2f}×，建议统一使用「价格钩子+搜索承接」模板</li>
-      </ul>
-    </div>
-  </div>
 
-  <div class="section">
-    <h2 class="section-title">全量 786 篇 KISS 结论</h2>
-    <div class="kiss-grid">
-      <div class="kiss-card kiss-keep">
-        <div class="kiss-title">KEEP</div>
-        <div class="kiss-v">KOC 仍是效率基本盘：统一后 {fmt_num(koc_overall['count'])} 篇，实际 ROI {koc_overall['roi']:.2f}×，远高于 KOL {kol_overall['roi']:.2f}×</div>
-        <div class="kiss-v">S1 高客单模型成立：{fmt_num(s1['count'])} 篇 ROI {s1['roi']:.2f}×，篇均 GMV ¥{fmt_num(s1['avg_gmv'])}</div>
-        <div class="kiss-v">S1纵测、S1读书日借势、G1横测继续规模化复制</div>
-      </div>
-      <div class="kiss-card kiss-improve">
-        <div class="kiss-title">IMPROVE</div>
-        <div class="kiss-v">KOL {fmt_num(kol_overall['count'])} 篇全部压在 G1 横测，应扩展到 S1 纵测/读书日等高 ROI 方向</div>
-        <div class="kiss-v">节点类内容（520/618/场景对比）沉淀周期短，需提前 2-4 周前置铺设</div>
-        <div class="kiss-v">国补/促销类内容统一使用高转化标题公式并强化搜索承接</div>
-      </div>
-      <div class="kiss-card kiss-stop">
-        <div class="kiss-title">STOP</div>
-        <div class="kiss-v">S1 明星热点方向继续停投（本次 ROI {next((d['roi'] for d in s1_dirs if d['内容方向']=='S1热点明星'),0):.2f}×）</div>
-        <div class="kiss-v">低 ROI 账号类型（时尚颜值/职场财经/文艺学习/家庭亲子）建议停投或改为科技垂类共创</div>
-      </div>
-      <div class="kiss-card kiss-start">
-        <div class="kiss-title">START</div>
-        <div class="kiss-v">把高 ROI 方向（纵测/读书日）从 S1 复制到 G1，摆脱 G1 单一横测依赖</div>
-        <div class="kiss-v">用 20% 预算做新方向小样本测试，验证后导入 80% KOC 铺量</div>
-        <div class="kiss-v">建立「786 篇全量统一周报」口径，每周按预算 95w 更新</div>
-      </div>
+    <div class="mega-chart-row" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+      <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:14px;padding:16px;"><div style="color:#e2e8f0;font-size:14px;font-weight:700;margin-bottom:10px;">身份分布</div><div id="mega-role-chart" style="height:260px;"></div></div>
+      <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:14px;padding:16px;"><div style="color:#e2e8f0;font-size:14px;font-weight:700;margin-bottom:10px;">产品线分布</div><div id="mega-product-chart" style="height:260px;"></div></div>
     </div>
+
+    <div class="mega-chart-row" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+      <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:14px;padding:16px;"><div style="color:#e2e8f0;font-size:14px;font-weight:700;margin-bottom:10px;">S1 方向 ROI & 篇数</div><div id="mega-dir-s1" style="height:340px;"></div></div>
+      <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:14px;padding:16px;"><div style="color:#e2e8f0;font-size:14px;font-weight:700;margin-bottom:10px;">G1 方向 ROI & 篇数</div><div id="mega-dir-g1" style="height:340px;"></div></div>
+    </div>
+
+    <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:14px;padding:16px;">
+      <div style="color:#e2e8f0;font-size:14px;font-weight:700;margin-bottom:10px;">方向 × 产品线 ROI 热力图</div>
+      <div id="mega-heatmap" style="height:360px;"></div>
+    </div>
+
+    <div style="background:#0b1221;border:1px solid #1e2d5a;border-radius:14px;padding:16px;">
+      <div style="color:#e2e8f0;font-size:14px;font-weight:700;margin-bottom:10px;">TOP 方向 ROI 排行</div>
+      <div id="mega-top-dir" style="height:320px;"></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
+      <div style="background:#0b1221;border-left:4px solid #34d399;border-radius:10px;padding:14px;"><div style="color:#34d399;font-size:13px;font-weight:700;">KEEP</div><div style="color:#cbd5e1;font-size:12px;margin-top:6px;line-height:1.5;">KOC 基本盘 {koc_overall['roi']:.2f}×；S1 纵测/读书日、G1 横测继续规模化。</div></div>
+      <div style="background:#0b1221;border-left:4px solid #fbbf24;border-radius:10px;padding:14px;"><div style="color:#fbbf24;font-size:13px;font-weight:700;">IMPROVE</div><div style="color:#cbd5e1;font-size:12px;margin-top:6px;line-height:1.5;">KOL 从单一 G1 横测扩展到 S1 高 ROI 方向；节点内容提前 2-4 周铺设。</div></div>
+      <div style="background:#0b1221;border-left:4px solid #f87171;border-radius:10px;padding:14px;"><div style="color:#f87171;font-size:13px;font-weight:700;">STOP</div><div style="color:#cbd5e1;font-size:12px;margin-top:6px;line-height:1.5;">S1 明星热点停投；时尚/职场/文艺/亲子等低 ROI 账号类型停投。</div></div>
+      <div style="background:#0b1221;border-left:4px solid #60a5fa;border-radius:10px;padding:14px;"><div style="color:#60a5fa;font-size:13px;font-weight:700;">START</div><div style="color:#cbd5e1;font-size:12px;margin-top:6px;line-height:1.5;">把纵测/读书日从 S1 复制到 G1；用 20% 预算小样本测试新方向。</div></div>
+    </div>
+
   </div>
 </div>
 </div>'''
@@ -787,20 +763,23 @@ for tgt in TARGETS:
         'g1': dir_chart_data(g1_dirs),
         'heatmap_dirs': mega_heatmap_dirs,
         'heatmap_data': mega_heatmap_data,
+        'role_dist': role_dist,
+        'product_dist': product_dist,
+        'top_dirs': [{'方向': d['内容方向'], 'ROI': d['roi'], '篇数': d['count'], 'GMV': round(d['gmv'])} for d in top_dirs],
     }, ensure_ascii=False, separators=(',', ':'))
     init_mega_fn = f'''<script>
 const MEGA_DATA = {mega_data_json};
 function init_mega(){{
   try{{
-    const common = {{backgroundColor:'transparent',tooltip:{{trigger:'axis',axisPointer:{{type:'cross'}}}},legend:{{textStyle:{{color:'#7b8bb2'}},top:0}},grid:{{left:60,right:60,top:40,bottom:80}},xAxis:{{type:'category',axisLabel:{{color:'#b8c5dc',rotate:35,fontSize:11}},axisLine:{{lineStyle:{{color:'#1e2d5a'}}}}}},yAxis:[{{type:'value',name:'篇数',position:'left',axisLabel:{{color:'#7b8bb2'}},splitLine:{{lineStyle:{{color:'#1e2d5a'}}}},nameTextStyle:{{color:'#7b8bb2'}}}},{{type:'value',name:'ROI(×)',position:'right',axisLabel:{{color:'#fbbf24'}},splitLine:{{show:false}},nameTextStyle:{{color:'#fbbf24'}}}}]}};
+    const common = {{backgroundColor:'transparent',tooltip:{{trigger:'axis',axisPointer:{{type:'cross'}}}},legend:{{show:false}},grid:{{left:50,right:40,top:20,bottom:70}},xAxis:{{type:'category',axisLabel:{{color:'#b8c5dc',rotate:30,fontSize:11}},axisLine:{{lineStyle:{{color:'#1e2d5a'}}}}}},yAxis:[{{type:'value',name:'篇数',position:'left',axisLabel:{{color:'#7b8bb2'}},splitLine:{{lineStyle:{{color:'#1e2d5a'}}}},nameTextStyle:{{color:'#7b8bb2'}}}},{{type:'value',name:'ROI(×)',position:'right',axisLabel:{{color:'#fbbf24'}},splitLine:{{show:false}},nameTextStyle:{{color:'#fbbf24'}}}}]}};
     function makeBarLine(id, rows, color){{
       const el = document.getElementById(id); if(!el) return;
       const chart = echarts.init(el);
       chart.setOption({{...common,
         xAxis:{{...common.xAxis,data:rows.categories}},
         series:[
-          {{name:'篇数',type:'bar',data:rows.count,itemStyle:{{color:color,borderRadius:[4,4,0,0]}},barWidth:18}},
-          {{name:'ROI',type:'line',yAxisIndex:1,data:rows.roi,smooth:true,lineStyle:{{color:'#fbbf24',width:3}},itemStyle:{{color:'#fbbf24'}},symbol:'circle',symbolSize:8,label:{{show:true,color:'#fbbf24',formatter:'{{c}}×'}}}}
+          {{name:'篇数',type:'bar',data:rows.count,itemStyle:{{color:color,borderRadius:[4,4,0,0]}},barWidth:16}},
+          {{name:'ROI',type:'line',yAxisIndex:1,data:rows.roi,smooth:true,lineStyle:{{color:'#fbbf24',width:3}},itemStyle:{{color:'#fbbf24'}},symbol:'circle',symbolSize:6}}
         ]
       }});
       window.addEventListener('resize',()=>chart.resize());
@@ -808,19 +787,45 @@ function init_mega(){{
     makeBarLine('mega-dir-s1', MEGA_DATA.s1, '#38bdf8');
     makeBarLine('mega-dir-g1', MEGA_DATA.g1, '#a78bfa');
 
+    function makeDonut(id, data, colors){{
+      const el = document.getElementById(id); if(!el) return;
+      const chart = echarts.init(el);
+      chart.setOption({{
+        backgroundColor:'transparent',color:colors,
+        tooltip:{{trigger:'item',formatter:'{{b}}: {{c}}篇 ({{d}}%)'}},
+        legend:{{bottom:0,textStyle:{{color:'#94a3b8'}}}},
+        series:[{{type:'pie',radius:['45%','70%'],center:['50%','45%'],avoidLabelOverlap:false,label:{{show:true,color:'#e2e8f0',formatter:'{{b}}\\n{{c}}篇'}},data:data}}]
+      }});
+      window.addEventListener('resize',()=>chart.resize());
+    }}
+    makeDonut('mega-role-chart', MEGA_DATA.role_dist, ['#34d399','#fb7185']);
+    makeDonut('mega-product-chart', MEGA_DATA.product_dist, ['#38bdf8','#a78bfa']);
+
     const hmEl = document.getElementById('mega-heatmap');
     if(hmEl){{
       const hm = echarts.init(hmEl);
       hm.setOption({{
         backgroundColor:'transparent',
         tooltip:{{position:'top',formatter:function(p){{return p.name+'<br/>ROI: '+p.value[2]+'×<br/>篇数: '+p.value[3];}}}},
-        grid:{{left:80,right:40,top:20,bottom:120}},
-        xAxis:{{type:'category',data:MEGA_DATA.heatmap_dirs,splitArea:{{show:true}},axisLabel:{{color:'#b8c5dc',rotate:35,fontSize:11}}}},
+        grid:{{left:70,right:20,top:10,bottom:100}},
+        xAxis:{{type:'category',data:MEGA_DATA.heatmap_dirs,splitArea:{{show:true}},axisLabel:{{color:'#b8c5dc',rotate:35,fontSize:10}}}},
         yAxis:{{type:'category',data:['S1','G1'],splitArea:{{show:true}},axisLabel:{{color:'#b8c5dc',fontSize:13}}}},
-        visualMap:{{min:0,max:15,calculable:true,orient:'horizontal',left:'center',bottom:10,inRange:{{color:['#0f172a','#1e3a8a','#0ea5e9','#fbbf24','#f472b6']}},textStyle:{{color:'#7b8bb2'}}}},
-        series:[{{name:'ROI',type:'heatmap',data:MEGA_DATA.heatmap_data,label:{{show:true,formatter:function(p){{return p.value[2]+'×';}},color:'#fff',fontSize:11}},emphasis:{{itemStyle:{{shadowBlur:10,shadowColor:'rgba(0,0,0,0.5)'}}}}}}]
+        visualMap:{{min:0,max:15,calculable:true,orient:'horizontal',left:'center',bottom:0,inRange:{{color:['#0f172a','#1e3a8a','#0ea5e9','#fbbf24','#f472b6']}},textStyle:{{color:'#7b8bb2'}}}},
+        series:[{{name:'ROI',type:'heatmap',data:MEGA_DATA.heatmap_data,label:{{show:true,formatter:function(p){{return p.value[2]+'×';}},color:'#fff',fontSize:10}},emphasis:{{itemStyle:{{shadowBlur:10,shadowColor:'rgba(0,0,0,0.5)'}}}}}}]
       }});
       window.addEventListener('resize',()=>hm.resize());
+    }}
+
+    const topEl = document.getElementById('mega-top-dir');
+    if(topEl){{
+      const topChart = echarts.init(topEl);
+      topChart.setOption({{
+        backgroundColor:'transparent',tooltip:{{trigger:'axis',axisPointer:{{type:'shadow'}}}},grid:{{left:120,right:40,top:10,bottom:20}},
+        xAxis:{{type:'value',axisLabel:{{color:'#7b8bb2'}},splitLine:{{lineStyle:{{color:'#1e2d5a'}}}}}},
+        yAxis:{{type:'category',data:MEGA_DATA.top_dirs.map(d=>d.方向).reverse(),axisLabel:{{color:'#b8c5dc',fontSize:11}}}},
+        series:[{{type:'bar',data:MEGA_DATA.top_dirs.map(d=>d.ROI).reverse(),itemStyle:{{borderRadius:[0,6,6,0],color:new echarts.graphic.LinearGradient(0,0,1,0,[{{offset:0,color:'#0ea5e9'}},{{offset:1,color:'#f472b6'}}])}},label:{{show:true,position:'right',color:'#fff',formatter:'{{c}}×'}}}}]
+      }});
+      window.addEventListener('resize',()=>topChart.resize());
     }}
   }}catch(e){{console.error('init mega',e);}}
 }}
@@ -833,9 +838,9 @@ function init_mega(){{
         r"const INIT={'mega':typeof init_mega==='function'?init_mega:null,'s1g1':typeof init_s1g1==='function'?init_s1g1:null,\1};",
         h, count=1)
 
-    # 13) remove nav tabs promo/ruhan
-    h = re.sub(r'<button class="tab-btn" data-tab="promo">.*?</button>\s*', '', h, count=1, flags=re.DOTALL)
-    h = re.sub(r'<button class="tab-btn" data-tab="ruhan">.*?</button>\s*', '', h, count=1, flags=re.DOTALL)
+    # 13) remove nav tabs promo/ruhan + dead tabs brief/g1tpl/hengce/funnel
+    for dead in ['promo', 'ruhan', 'brief', 'g1tpl', 'hengce', 'funnel']:
+        h = re.sub(rf'<button class="tab-btn" data-tab="{dead}">.*?</button>\s*', '', h, count=1, flags=re.DOTALL)
 
     # 14) remove panel-promo block by index
     pp_start = h.find('<div class="panel panel-promo" id="panel-promo" data-panel="promo">')
@@ -846,6 +851,12 @@ function init_mega(){{
             if h[j:j+6] == '</div>': depth -= 1; j += 6; continue
             j += 1
         h = h[:pp_start] + h[j:].lstrip()
+
+    # 15) INIT only mega + s1g1
+    h = re.sub(
+        r"const INIT=\{.*?\};",
+        "const INIT={'mega':typeof init_mega==='function'?init_mega:null,'s1g1':typeof init_s1g1==='function'?init_s1g1:null};",
+        h, count=1, flags=re.DOTALL)
 
     tgt.write_text(h, encoding='utf-8')
     print(f'✓ panel-mega + init + nav cleanup {tgt.relative_to(ROOT)}')
