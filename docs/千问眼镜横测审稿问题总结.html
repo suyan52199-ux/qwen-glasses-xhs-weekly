@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>千问AI眼镜 图文横测审稿问题总结</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f5f7fa; color: #1a1a2e; line-height: 1.6; }
+.container { max-width: 960px; margin: 0 auto; padding: 40px 20px; }
+
+/* Header */
+.header { text-align: center; margin-bottom: 40px; }
+.header h1 { font-size: 28px; font-weight: 700; color: #1a1a2e; margin-bottom: 8px; }
+.header .subtitle { font-size: 14px; color: #666; }
+.header .stats { display: flex; justify-content: center; gap: 32px; margin-top: 20px; }
+.stat-item { text-align: center; }
+.stat-num { font-size: 36px; font-weight: 800; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.stat-label { font-size: 12px; color: #888; margin-top: 2px; }
+
+/* Category Section */
+.category { margin-bottom: 28px; background: #fff; border-radius: 16px; padding: 24px 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.cat-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid #f0f0f0; }
+.cat-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.cat-title { font-size: 18px; font-weight: 700; }
+.cat-count { font-size: 12px; color: #888; margin-left: auto; background: #f5f5f5; padding: 2px 10px; border-radius: 12px; }
+
+/* Issue Items */
+.issues { display: flex; flex-direction: column; gap: 8px; }
+.issue { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border-radius: 10px; background: #fafbfc; transition: background 0.2s; }
+.issue:hover { background: #f0f4ff; }
+.issue-tag { flex-shrink: 0; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 6px; margin-top: 2px; white-space: nowrap; }
+.issue-text { font-size: 13.5px; color: #333; }
+.issue-text .highlight { color: #e74c3c; font-weight: 600; }
+.issue-text .good { color: #27ae60; font-weight: 600; }
+.issue-text .warn { color: #f39c12; font-weight: 600; }
+
+/* Severity Colors */
+.tag-red { background: #fde8e8; color: #e74c3c; }
+.tag-orange { background: #fef3e2; color: #e67e22; }
+.tag-blue { background: #e8f0fe; color: #2980b9; }
+.tag-green { background: #e8f8f0; color: #27ae60; }
+.tag-purple { background: #f0e8fe; color: #8e44ad; }
+.tag-gray { background: #eee; color: #666; }
+
+/* Category Icon Colors */
+.ic-red { background: #fde8e8; color: #e74c3c; }
+.ic-blue { background: #e8f0fe; color: #2980b9; }
+.ic-orange { background: #fef3e2; color: #e67e22; }
+.ic-purple { background: #f0e8fe; color: #8e44ad; }
+.ic-green { background: #e8f8f0; color: #27ae60; }
+.ic-teal { background: #e0f7fa; color: #00897b; }
+.ic-gray { background: #eee; color: #555; }
+.ic-pink { background: #fce4ec; color: #c62828; }
+
+/* Key Rules Callout */
+.callout { background: linear-gradient(135deg, #667eea22, #764ba222); border-left: 4px solid #667eea; border-radius: 0 12px 12px 0; padding: 16px 20px; margin-bottom: 28px; }
+.callout h3 { font-size: 15px; font-weight: 700; color: #4a4a8a; margin-bottom: 8px; }
+.callout p { font-size: 13px; color: #555; }
+.callout .rule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+.callout .rule-chip { font-size: 12px; background: #fff; padding: 6px 12px; border-radius: 8px; color: #444; display: flex; align-items: center; gap: 6px; }
+.rule-chip .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.dot-red { background: #e74c3c; }
+.dot-green { background: #27ae60; }
+.dot-orange { background: #f39c12; }
+.dot-blue { background: #2980b9; }
+
+/* G1 vs S1 comparison */
+.product-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+.product-card { background: #fff; border-radius: 14px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.product-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.product-card .badge { font-size: 11px; padding: 2px 8px; border-radius: 6px; }
+.g1-badge { background: #e8f0fe; color: #2980b9; }
+.s1-badge { background: #f0e8fe; color: #8e44ad; }
+.product-card .spec-list { list-style: none; }
+.product-card .spec-list li { font-size: 13px; padding: 4px 0; border-bottom: 1px solid #f5f5f5; display: flex; justify-content: space-between; }
+.product-card .spec-list li:last-child { border-bottom: none; }
+.spec-key { color: #888; }
+.spec-val { font-weight: 600; color: #333; }
+
+/* Footer */
+.footer { text-align: center; padding: 20px 0; color: #aaa; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>千问AI眼镜 图文横测审稿问题总结</h1>
+  <div class="subtitle">基于审稿历史问题汇总 | 通用规则 11 条 + G1 专项 27 条 + S1 专项 20 条</div>
+  <div class="stats">
+    <div class="stat-item"><div class="stat-num">58</div><div class="stat-label">总问题条目</div></div>
+    <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">问题大类</div></div>
+    <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">适用产品线</div></div>
+  </div>
+</div>
+
+<!-- Key Rules Callout -->
+<div class="callout">
+  <h3>审稿铁律（高频踩坑 TOP 5）</h3>
+  <div class="rule-grid">
+    <div class="rule-chip"><span class="dot dot-red"></span>产品名必须写完整："千问AI眼镜G1/S1"</div>
+    <div class="rule-chip"><span class="dot dot-red"></span>大模型写："阿里巴巴自研千问大模型"</div>
+    <div class="rule-chip"><span class="dot dot-orange"></span>不提竞品优势，不拉踩竞品</div>
+    <div class="rule-chip"><span class="dot dot-blue"></span>1v1时千问放第一列，参数不突出颜色</div>
+    <div class="rule-chip"><span class="dot dot-green"></span>必须突出：热插拔换电 / AI克隆同声传译</div>
+  </div>
+</div>
+
+<!-- G1 vs S1 Product Specs -->
+<div class="product-compare">
+  <div class="product-card">
+    <h3><span>千问AI眼镜 G1</span> <span class="badge g1-badge">拍摄旗舰</span></h3>
+    <ul class="spec-list">
+      <li><span class="spec-key">框型</span><span class="spec-val">威灵顿方框 + 眉框</span></li>
+      <li><span class="spec-key">镜腿</span><span class="spec-val">8mm</span></li>
+      <li><span class="spec-key">存储</span><span class="spec-val">64GB</span></li>
+      <li><span class="spec-key">影像</span><span class="spec-val">3K录像直出 / 1200万像素</span></li>
+      <li><span class="spec-key">拍照</span><span class="spec-val">0.6秒极速拍照</span></li>
+      <li><span class="spec-key">防水</span><span class="spec-val">IPX4 生活防水</span></li>
+      <li><span class="spec-key">素材图</span><span class="spec-val">必须用眉框图</span></li>
+      <li><span class="spec-key">款式</span><span class="spec-val">标准款/墨镜款/多彩款</span></li>
+      <li><span class="spec-key">镜片</span><span class="spec-val">7种多彩镜片（非"场景"）</span></li>
+      <li><span class="spec-key">独家卖点</span><span class="spec-val">热插拔换电24h续航</span></li>
+    </ul>
+  </div>
+  <div class="product-card">
+    <h3><span>千问AI眼镜 S1</span> <span class="badge s1-badge">显示旗舰</span></h3>
+    <ul class="spec-list">
+      <li><span class="spec-key">框型</span><span class="spec-val">波士顿圆框 + 威灵顿方框</span></li>
+      <li><span class="spec-key">镜腿</span><span class="spec-val">7.5mm</span></li>
+      <li><span class="spec-key">存储</span><span class="spec-val">32GB</span></li>
+      <li><span class="spec-key">显示</span><span class="spec-val">空间3D显示（双光机双目）</span></li>
+      <li><span class="spec-key">定位</span><span class="spec-val">阿里巴巴旗舰双显AI眼镜</span></li>
+      <li><span class="spec-key">智能</span><span class="spec-val">主动智能服务（非"办事"）</span></li>
+      <li><span class="spec-key">OTA功能</span><span class="spec-val">图片中要前置展示</span></li>
+      <li><span class="spec-key">款式</span><span class="spec-val">标准款</span></li>
+      <li><span class="spec-key">独家卖点</span><span class="spec-val">空间3D显示 + 主动智能</span></li>
+      <li><span class="spec-key">注意</span><span class="spec-val">素材不能和G1混淆</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Category 1: 产品信息准确性 -->
+<div class="category">
+  <div class="cat-header">
+    <div class="cat-icon ic-red">1</div>
+    <div class="cat-title">产品信息准确性</div>
+    <div class="cat-count">12 条</div>
+  </div>
+  <div class="issues">
+    <div class="issue"><span class="issue-tag tag-red">必须</span><div class="issue-text">产品名写完整：<span class="good">千问AI眼镜G1</span> / <span class="good">千问AI眼镜S1</span>，禁止简写"千问G1""千问S1"</div></div>
+    <div class="issue"><span class="issue-tag tag-red">必须</span><div class="issue-text">框型名称写完整：G1=<span class="good">威灵顿方框+眉框</span>，S1=<span class="good">波士顿圆框+威灵顿方框</span>，不能只写"威灵顿"</div></div>
+    <div class="issue"><span class="issue-tag tag-red">必须</span><div class="issue-text">G1素材必须用<span class="good">眉框图</span>；G1/S1素材不能混淆；G1镜腿图不能放成S1的</div></div>
+    <div class="issue"><span class="issue-tag tag-red">必须</span><div class="issue-text">硬件参数准确：G1 镜腿<span class="good">8mm</span>/内存<span class="good">64GB</span>；S1 镜腿<span class="good">7.5mm</span>/内存<span class="good">32GB</span>，不能搞混</div></div>
+    <div class="issue"><span class="issue-tag tag-red">必须</span><div class="issue-text">款式名称用"标准<span class="good">款</span>/墨镜<span class="good">款</span>/多彩<span class="good">款</span>"，禁止写"版"</div></div>
+    <div class="issue"><span class="issue-tag tag-red">必须</span><div class="issue-text">G1镜片描述：<span class="good">7种多彩镜片</span>，禁止写"7种场景镜片"</div></div>
+    <div class="issue"><span class="issue-tag tag-red">必须</span><div class="issue-text">S1产品定位：<span class="good">阿里巴巴旗舰双显AI眼镜</span>，按详情页描述</div></div>
+    <div class="issue"><span class="issue-tag tag-red">必须</span><div class="issue-text">S1空间3D显示描述参照详情页：双光机+双目立体成像，写"<span class="good">空间3D显示</span>"非"3D空间显示"</div></div>
+    <div class="issue"><span class="issue-tag tag-orange">注意</span><div class="issue-text">数值必须带单位：刷新率加<span class="good">s</span>、亮度加<span class="good">nits</span>，不能裸写数字</div></div>
+    <div class="issue"><span class="issue-tag tag-orange">注意</span><div class="issue-text">影像描述：不能单讲"支持4K影像"，应写<span class="good">"3K录像直出，配合AI超分超帧算法生成4K60帧"</span></div></div>
+    <div class="issue"><span class="issue-tag tag-orange">注意</span><div class="issue-text">品牌名大小写统一：Meta首字母大写，竞品尽量用中文写法（如"雷鸟智能眼镜V3"）</div></div>
+    <div class="issue"><span class="issue-tag tag-orange">注意</span><div class="issue-text">文案/图片不能有错别字：常见错误 "<span class="highlight">眼睛</span>→眼镜" "无线续航→<span class="good">无限续航</span>"</div></div>
+  </div>
+</div>
+
+<!-- Category 2: 竞品对比规则 -->
+<div class="category">
+  <div class="cat-header">
+    <div class="cat-icon ic-blue">2</div>
+    <div class="cat-title">竞品对比规则</div>
+    <div class="cat-count">9 条</div>
+  </div>
+  <div class="issues">
+    <div class="issue"><span class="issue-tag tag-red">必须</span><div class="issue-text">1v1对比时千问放<span class="good">第一列</span>，多图对比时千问放<span class="good">第二列</span></div></div>
+    <div class="issue"><span class="issue-tag tag-red">必须</span><div class="issue-text">参数表/主图千问优势处<span class="highlight">不要额外颜色突出/加粗</span>，图片数量和大小与竞品一致</div></div>
+    <div class="issue"><span class="issue-tag tag-red">必须</span><div class="issue-text">对仗工整：千问提到的功能（如3K录制、0.6秒抓拍），竞品也要对应写上；反之竞品提到而千问也有的，千问也要写</div></div>
+    <div class="issue"><span class="issue-tag tag-red">必须</span><div class="issue-text">文案、参数表和图片讲解<span class="good">顺序保持一致</span>（如雷鸟→千问→小米，图和文都按此顺序）</div></div>
+    <div class="issue"><span class="issue-tag tag-red">禁止</span><div class="issue-text"><span class="highlight">不要拉踩竞品</span>；不要提及竞品有而千问没有的点</div></div>
+    <div class="issue"><span class="issue-tag tag-red">禁止</span><div class="issue-text"><span class="highlight">不要提及竞品优势</span>：如乐奇多模型配图、华为防水/蓝牙/重量等</div></div>
+    <div class="issue"><span class="issue-tag tag-orange">屏蔽</span><div class="issue-text">竞品摄像头统一写<span class="good">1200万像素</span>；存储不写RAM/ROM</div></div>
+    <div class="issue"><span class="issue-tag tag-orange">屏蔽</span><div class="issue-text">防水/蓝牙/重量等华为更占优势的参数<span class="highlight">不写</span></div></div>
+    <div class="issue"><span class="issue-tag tag-orange">注意</span><div class="issue-text">竞品参数要准确：小米=<span class="good">四麦+骨传导</span>，理想/Meta=四麦，雷鸟/华为=三麦；乐奇=单光机</div></div>
+  </div>
+</div>
+
+<!-- Category 3: 品牌表述规范 -->
+<div class="category">
+  <div class="cat-header">
+    <div class="cat-icon ic-purple">3</div>
+    <div class="cat-title">品牌表述规范</div>
+    <div class="cat-count">8 条</div>
+  </div>
+  <div class="issues">
+    <div class="issue"><span class="issue-tag tag-red">必须</span><div class="issue-text">大模型写完整：<span class="good">阿里巴巴自研千问大模型</span> / 原生自研千问大模型 / 自研千问大模型</div></div>
+    <div class="issue"><span class="issue-tag tag-red">必须</span><div class="issue-text">拍题答疑功能要写<span class="good">千问学习大模型</span>，不能省略</div></div>
+    <div class="issue"><span class="issue-tag tag-red">必须</span><div class="issue-text"><span class="good">AI克隆同声传译</span>优先提及，先讲克隆同声传译，再讲89种语言互译</div></div>
+    <div class="issue"><span class="issue-tag tag-red">必须</span><div class="issue-text">模仿语调是<span class="good">AI克隆同声传译</span>的功能，不能与89种语言翻译混淆一起讲</div></div>
+    <div class="issue"><span class="issue-tag tag-orange">注意</span><div class="issue-text">S1强调"<span class="good">主动智能服务</span>"，不要说"办事"</div></div>
+    <div class="issue"><span class="issue-tag tag-orange">注意</span><div class="issue-text">G1独家能力要提及：AI克隆同声传译、生态、热插拔换电全天候续航</div></div>
+    <div class="issue"><span class="issue-tag tag-orange">注意</span><div class="issue-text">S1独家能力要提及：空间3D显示、主动智能服务、AI克隆同声传译、生态、热插拔换电</div></div>
+    <div class="issue"><span class="issue-tag tag-orange">注意</span><div class="issue-text">生态功能写完整：<span class="good">淘宝闪购点外卖、飞猪看行程、支付宝看一下支付、大麦查电影票、高德扫街/导航</span></div></div>
+  </div>
+</div>
+
+<!-- Category 4: 广告合规与审核风险 -->
+<div class="category">
+  <div class="cat-header">
+    <div class="cat-icon ic-orange">4</div>
+    <div class="cat-title">广告合规与审核风险</div>
+    <div class="cat-count">7 条</div>
+  </div>
+  <div class="issues">
+    <div class="issue"><span class="issue-tag tag-red">禁止</span><div class="issue-text">"<span class="highlight">行业首创</span>"容易卡审，必须删掉</div></div>
+    <div class="issue"><span class="issue-tag tag-red">禁止</span><div class="issue-text">不能直接写"<span class="highlight">3K录像生成4K</span>"，需改为"3K录像直出+AI超分超帧算法"</div></div>
+    <div class="issue"><span class="issue-tag tag-red">禁止</span><div class="issue-text">不能出现AI眼镜<span class="highlight">无法实现的功能</span>：写文案/创作文案/钉钉/订酒店/购物/买电影票等</div></div>
+    <div class="issue"><span class="issue-tag tag-red">禁止</span><div class="issue-text">不能提及"<span class="highlight">不带手机/出门不用带手机</span>"——产品脱离手机无法连接蓝牙使用</div></div>
+    <div class="issue"><span class="issue-tag tag-orange">必须</span><div class="issue-text">提及价格时，都要备注<span class="good">"具体价格以详情页为准"</span></div></div>
+    <div class="issue"><span class="issue-tag tag-orange">必须</span><div class="issue-text">苹果不提4800万像素和4K视频，参数要加<span class="good">"爆料信息参考"</span></div></div>
+    <div class="issue"><span class="issue-tag tag-orange">注意</span><div class="issue-text">除了内容主体外，不要出现奇怪的水印（如京东水印）</div></div>
+  </div>
+</div>
+
+<!-- Category 5: 千问卖点突出 -->
+<div class="category">
+  <div class="cat-header">
+    <div class="cat-icon ic-green">5</div>
+    <div class="cat-title">千问核心卖点突出</div>
+    <div class="cat-count">5 条</div>
+  </div>
+  <div class="issues">
+    <div class="issue"><span class="issue-tag tag-green">重点</span><div class="issue-text">突出<span class="good">热插拔换电</span>，可实现24h全天候续航（G1 272mAh）</div></div>
+    <div class="issue"><span class="issue-tag tag-green">重点</span><div class="issue-text">强调<span class="good">兼容iOS和Android</span>，<span class="highlight">不提及鸿蒙</span></div></div>
+    <div class="issue"><span class="issue-tag tag-green">重点</span><div class="issue-text">目标用户<span class="good">范围广泛</span>：职场打工人/科技党/追求AI能力/追求长续航，不限生态，不要集中在阿里生态用户</div></div>
+    <div class="issue"><span class="issue-tag tag-green">重点</span><div class="issue-text"><span class="good">AI克隆同声传译</span>+89种语言互译（G1/S1共同独家卖点）</div></div>
+    <div class="issue"><span class="issue-tag tag-green">重点</span><div class="issue-text">S1突出<span class="good">空间3D显示</span>（双光机双目立体成像）+ <span class="good">主动智能服务</span></div></div>
+  </div>
+</div>
+
+<!-- Category 6: 内容排版与配图 -->
+<div class="category">
+  <div class="cat-header">
+    <div class="cat-icon ic-teal">6</div>
+    <div class="cat-title">内容排版与配图规范</div>
+    <div class="cat-count">5 条</div>
+  </div>
+  <div class="issues">
+    <div class="issue"><span class="issue-tag tag-blue">规范</span><div class="issue-text">配图要和文字<span class="good">一一对应</span>：不能配图是翻译、文字是续航</div></div>
+    <div class="issue"><span class="issue-tag tag-blue">规范</span><div class="issue-text">参数对齐，排版要有<span class="good">可读性</span>，注意分段</div></div>
+    <div class="issue"><span class="issue-tag tag-blue">规范</span><div class="issue-text">文案、参数表和图片讲解<span class="good">顺序保持一致</span></div></div>
+    <div class="issue"><span class="issue-tag tag-blue">规范</span><div class="issue-text">S1的OTA功能图片要<span class="good">前置展示</span></div></div>
+    <div class="issue"><span class="issue-tag tag-blue">规范</span><div class="issue-text">文案注意<span class="good">分段和排版</span>，增加可读性</div></div>
+  </div>
+</div>
+
+<!-- Summary Severity Chart -->
+<div class="category" style="background: linear-gradient(135deg, #fafbfc, #f0f4ff);">
+  <div class="cat-header">
+    <div class="cat-icon ic-gray">7</div>
+    <div class="cat-title">问题严重度分布</div>
+  </div>
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; text-align: center;">
+    <div style="background: #fde8e8; border-radius: 12px; padding: 20px;">
+      <div style="font-size: 32px; font-weight: 800; color: #e74c3c;">~60%</div>
+      <div style="font-size: 13px; color: #c0392b; font-weight: 600; margin-top: 4px;">必须修改</div>
+      <div style="font-size: 11px; color: #e74c3c; margin-top: 2px;">产品名/参数/品牌表述</div>
+    </div>
+    <div style="background: #fef3e2; border-radius: 12px; padding: 20px;">
+      <div style="font-size: 32px; font-weight: 800; color: #e67e22;">~25%</div>
+      <div style="font-size: 13px; color: #d35400; font-weight: 600; margin-top: 4px;">审核风险</div>
+      <div style="font-size: 11px; color: #e67e22; margin-top: 2px;">极限词/虚假功能/合规</div>
+    </div>
+    <div style="background: #e8f0fe; border-radius: 12px; padding: 20px;">
+      <div style="font-size: 32px; font-weight: 800; color: #2980b9;">~15%</div>
+      <div style="font-size: 13px; color: #2471a3; font-weight: 600; margin-top: 4px;">排版优化</div>
+      <div style="font-size: 11px; color: #2980b9; margin-top: 2px;">配图/顺序/可读性</div>
+    </div>
+  </div>
+</div>
+
+<!-- Quick Checklist -->
+<div class="category">
+  <div class="cat-header">
+    <div class="cat-icon ic-pink">8</div>
+    <div class="cat-title">审稿速查 Checklist</div>
+  </div>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+    <div style="font-size: 13px; padding: 6px 10px; background: #fafbfc; border-radius: 8px;">&#9744; 产品名完整（千问AI眼镜G1/S1）</div>
+    <div style="font-size: 13px; padding: 6px 10px; background: #fafbfc; border-radius: 8px;">&#9744; 大模型名称完整准确</div>
+    <div style="font-size: 13px; padding: 6px 10px; background: #fafbfc; border-radius: 8px;">&#9744; 框型名称写完整（方框/圆框）</div>
+    <div style="font-size: 13px; padding: 6px 10px; background: #fafbfc; border-radius: 8px;">&#9744; 硬件参数正确（镜腿/内存）</div>
+    <div style="font-size: 13px; padding: 6px 10px; background: #fafbfc; border-radius: 8px;">&#9744; 款式用"款"不用"版"</div>
+    <div style="font-size: 13px; padding: 6px 10px; background: #fafbfc; border-radius: 8px;">&#9744; 不拉踩竞品/不提竞品优势</div>
+    <div style="font-size: 13px; padding: 6px 10px; background: #fafbfc; border-radius: 8px;">&#9744; 参数对比对仗工整</div>
+    <div style="font-size: 13px; padding: 6px 10px; background: #fafbfc; border-radius: 8px;">&#9744; 千问列位置正确</div>
+    <div style="font-size: 13px; padding: 6px 10px; background: #fafbfc; border-radius: 8px;">&#9744; 无极限词/虚假功能</div>
+    <div style="font-size: 13px; padding: 6px 10px; background: #fafbfc; border-radius: 8px;">&#9744; 价格有免责声明</div>
+    <div style="font-size: 13px; padding: 6px 10px; background: #fafbfc; border-radius: 8px;">&#9744; 不提"不带手机"</div>
+    <div style="font-size: 13px; padding: 6px 10px; background: #fafbfc; border-radius: 8px;">&#9744; 不提鸿蒙/不写RAM/ROM</div>
+    <div style="font-size: 13px; padding: 6px 10px; background: #fafbfc; border-radius: 8px;">&#9744; 突出热插拔/AI克隆同声传译</div>
+    <div style="font-size: 13px; padding: 6px 10px; background: #fafbfc; border-radius: 8px;">&#9744; 兼容iOS和Android</div>
+    <div style="font-size: 13px; padding: 6px 10px; background: #fafbfc; border-radius: 8px;">&#9744; 图文顺序一致/配图对应</div>
+    <div style="font-size: 13px; padding: 6px 10px; background: #fafbfc; border-radius: 8px;">&#9744; 无错别字/水印</div>
+    <div style="font-size: 13px; padding: 6px 10px; background: #fafbfc; border-radius: 8px;">&#9744; G1/S1素材不混淆</div>
+  </div>
+</div>
+
+<div class="footer">
+  基于钉钉文档「图文横测问题汇总」整理 | 千问AI眼镜市场部
+</div>
+
+</div>
+</body>
+</html>
